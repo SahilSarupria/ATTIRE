@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 24 95% 53%;
+  --primary-foreground: 0 0% 9%;
+  --secondary: 0 0% 14.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 14.9%;
+  --muted-foreground: 0 0% 63.9%;
+  --accent: 0 0% 14.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 14.9%;
+  --input: 0 0% 14.9%;
+  --ring: 24 95% 53%;
+  --radius: 0.5rem;
+}
+
+@font-face {
+  font-family: 'October Crow';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.cdnfonts.com/s/15096/October%20Crow.woff') format('woff');
+}
+
+.october-crow-text {
+  font-family: 'October Crow', cursive;
+  letter-spacing: 0.2em; /* increase spacing here */
+}
+
+body {
+  @apply bg-black text-white;
+}
+
+/* Custom scrollbar*/
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::selection {
+  background-color: #074046; /* Tailwind's orange-500 */
+  color: #ffffff;
+}
+
+
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f97316;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ea580c;
+}
+
+.form-input-highlight:focus {
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.3);
+  border-color: #f97316;
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+}
+
+.image-overlay {
+  position: relative;
+}
+
+.image-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(249, 115, 22, 0.1), rgba(0, 0, 0, 0.7));
+  z-index: 1;
+}
+
+.orange-glow {
+  box-shadow: 0 0 15px 2px rgba(249, 115, 22, 0.15);
+  transition: all 0.3s ease;
+}
+
+.orange-glow:hover {
+  box-shadow: 0 0 20px 5px rgba(249, 115, 22, 0.3);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* Panel transition animations */
+.panel-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.panel-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+section {
+  scroll-snap-align: start;
+  
+}
+
+.panel-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.panel-exit-active {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+/* Smooth transitions for all interactive elements */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

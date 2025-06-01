@@ -1,0 +1,3815 @@
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"OPTIONS /api/login/ HTTP/1.1" 200 0
+Not Found: /api/login/
+"POST /api/login/ HTTP/1.1" 404 3029
+Not Found: /
+"GET / HTTP/1.1" 404 2980
+"OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+Internal Server Error: /api/auth/login/
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: accounts_user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py", line 26, in login
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\serializers.py", line 429, in run_validation
+    value = self.validate(value)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\serializers.py", line 44, in validate
+    user = User.objects.get(email=email)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: accounts_user
+"POST /api/auth/login/ HTTP/1.1" 500 191735
+"OPTIONS /api/auth/register/ HTTP/1.1" 200 0
+Internal Server Error: /api/auth/register/
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: accounts_user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py", line 11, in register
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\serializers.py", line 483, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\fields.py", line 751, in run_validation
+    return super().run_validation(data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\fields.py", line 548, in run_validation
+    self.run_validators(value)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\fields.py", line 560, in run_validators
+    validator(value, self)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\validators.py", line 73, in __call__
+    if qs_exists(queryset):
+       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\validators.py", line 21, in qs_exists
+    return queryset.exists()
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 1241, in exists
+    return self.query.has_results(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 598, in has_results
+    return compiler.has_results()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\compiler.py", line 1530, in has_results
+    return bool(self.execute_sql(SINGLE))
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: accounts_user
+"POST /api/auth/register/ HTTP/1.1" 500 200697
+Watching for file changes with StatReloader
+Not Found: /
+"GET / HTTP/1.1" 404 2980
+Not Found: /api/auth
+"GET /api/auth HTTP/1.1" 404 3022
+Not Found: /api/auth/
+"GET /api/auth/ HTTP/1.1" 404 3454
+"OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+Internal Server Error: /api/auth/login/
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: accounts_user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py", line 26, in login
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\serializers.py", line 429, in run_validation
+    value = self.validate(value)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\serializers.py", line 44, in validate
+    user = User.objects.get(email=email)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 633, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: accounts_user
+"POST /api/auth/login/ HTTP/1.1" 500 191735
+"OPTIONS /api/auth/register/ HTTP/1.1" 200 0
+Internal Server Error: /api/auth/register/
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: accounts_user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py", line 11, in register
+    if serializer.is_valid():
+       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\serializers.py", line 227, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\serializers.py", line 426, in run_validation
+    value = self.to_internal_value(data)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\serializers.py", line 483, in to_internal_value
+    validated_value = field.run_validation(primitive_value)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\fields.py", line 751, in run_validation
+    return super().run_validation(data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\fields.py", line 548, in run_validation
+    self.run_validators(value)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\fields.py", line 560, in run_validators
+    validator(value, self)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\validators.py", line 73, in __call__
+    if qs_exists(queryset):
+       ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\validators.py", line 21, in qs_exists
+    return queryset.exists()
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 1241, in exists
+    return self.query.has_results(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 598, in has_results
+    return compiler.has_results()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\compiler.py", line 1530, in has_results
+    return bool(self.execute_sql(SINGLE))
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: accounts_user
+"POST /api/auth/register/ HTTP/1.1" 500 200697
+Watching for file changes with StatReloader
+Not Found: /
+"GET / HTTP/1.1" 404 2980
+Not Found: /api/auth/
+"GET /api/auth/ HTTP/1.1" 404 3454
+Watching for file changes with StatReloader
+Not Found: /
+"GET / HTTP/1.1" 404 2980
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3031
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4178
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 18533
+"GET /static/admin/css/base.css HTTP/1.1" 200 21207
+"GET /static/admin/css/login.css HTTP/1.1" 200 958
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 13523
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /admin/accounts/user/ HTTP/1.1" 200 17583
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 6566
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 8943
+"GET /static/admin/js/core.js HTTP/1.1" 200 5682
+"GET /static/admin/js/actions.js HTTP/1.1" 200 7872
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/img/search.svg HTTP/1.1" 200 458
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 292458
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /static/admin/js/filters.js HTTP/1.1" 200 978
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+"GET /admin/ HTTP/1.1" 200 13523
+Internal Server Error: /admin/analytics/productview/
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "analytics_productview" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "analytics_productview"
+                                          ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\views\decorators\cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 1926, in changelist_view
+    cl = self.get_changelist_instance(request)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 836, in get_changelist_instance
+    return ChangeList(
+           ^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\views\main.py", line 123, in __init__
+    self.get_results(request)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\views\main.py", line 279, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\paginator.py", line 93, in count
+    return c()
+           ^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 608, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 568, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 554, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "analytics_productview" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "analytics_productview"
+                                          ^
+
+"GET /admin/analytics/productview/ HTTP/1.1" 500 180793
+"GET /admin/ HTTP/1.1" 200 13523
+Internal Server Error: /admin/analytics/salesmetrics/
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "analytics_salesmetrics" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "analytics_salesmetrics"
+                                          ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\views\decorators\cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 1926, in changelist_view
+    cl = self.get_changelist_instance(request)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 836, in get_changelist_instance
+    return ChangeList(
+           ^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\views\main.py", line 123, in __init__
+    self.get_results(request)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\views\main.py", line 279, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\paginator.py", line 93, in count
+    return c()
+           ^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 608, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 568, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 554, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "analytics_salesmetrics" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "analytics_salesmetrics"
+                                          ^
+
+"GET /admin/analytics/salesmetrics/ HTTP/1.1" 500 180840
+"GET /admin/ HTTP/1.1" 200 13523
+"GET /admin/auth/group/ HTTP/1.1" 200 13304
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/ HTTP/1.1" 200 13523
+Internal Server Error: /admin/cart/cartitem/
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "cart_cartitem" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "cart_cartitem"
+                                          ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\views\decorators\cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 1926, in changelist_view
+    cl = self.get_changelist_instance(request)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 836, in get_changelist_instance
+    return ChangeList(
+           ^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\views\main.py", line 123, in __init__
+    self.get_results(request)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\views\main.py", line 279, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\paginator.py", line 93, in count
+    return c()
+           ^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 608, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 568, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 554, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "cart_cartitem" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "cart_cartitem"
+                                          ^
+
+"GET /admin/cart/cartitem/ HTTP/1.1" 500 180520
+"GET /admin/ HTTP/1.1" 200 13523
+Internal Server Error: /admin/manufacturing/manufacturingqueue/
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "manufacturing_manufacturingqueue" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "manufacturing_manufacturi...
+                                          ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\views\decorators\cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 1926, in changelist_view
+    cl = self.get_changelist_instance(request)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 836, in get_changelist_instance
+    return ChangeList(
+           ^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\views\main.py", line 123, in __init__
+    self.get_results(request)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\views\main.py", line 279, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\paginator.py", line 93, in count
+    return c()
+           ^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 608, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 568, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 554, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "manufacturing_manufacturingqueue" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "manufacturing_manufacturi...
+                                          ^
+
+"GET /admin/manufacturing/manufacturingqueue/ HTTP/1.1" 500 181716
+"GET /admin/ HTTP/1.1" 200 13523
+Internal Server Error: /admin/notifications/notification/
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "notifications_notification" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "notifications_notificatio...
+                                          ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\views\decorators\cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 1926, in changelist_view
+    cl = self.get_changelist_instance(request)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 836, in get_changelist_instance
+    return ChangeList(
+           ^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\views\main.py", line 123, in __init__
+    self.get_results(request)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\views\main.py", line 279, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\paginator.py", line 93, in count
+    return c()
+           ^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 608, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 568, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 554, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "notifications_notification" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "notifications_notificatio...
+                                          ^
+
+"GET /admin/notifications/notification/ HTTP/1.1" 500 181095
+"GET /admin/ HTTP/1.1" 200 13523
+Internal Server Error: /admin/orders/orderitem/
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "orders_orderitem" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "orders_orderitem"
+                                          ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\views\decorators\cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 1926, in changelist_view
+    cl = self.get_changelist_instance(request)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 836, in get_changelist_instance
+    return ChangeList(
+           ^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\views\main.py", line 123, in __init__
+    self.get_results(request)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\views\main.py", line 279, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\paginator.py", line 93, in count
+    return c()
+           ^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 608, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 568, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 554, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "orders_orderitem" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "orders_orderitem"
+                                          ^
+
+"GET /admin/orders/orderitem/ HTTP/1.1" 500 180765
+"GET /admin/ HTTP/1.1" 200 13523
+Internal Server Error: /admin/orders/order/
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "orders_order" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "orders_order"
+                                          ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\views\decorators\cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 1926, in changelist_view
+    cl = self.get_changelist_instance(request)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 836, in get_changelist_instance
+    return ChangeList(
+           ^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\views\main.py", line 123, in __init__
+    self.get_results(request)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\views\main.py", line 279, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\paginator.py", line 93, in count
+    return c()
+           ^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 608, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 568, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 554, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "orders_order" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "orders_order"
+                                          ^
+
+"GET /admin/orders/order/ HTTP/1.1" 500 180499
+"GET /admin/ HTTP/1.1" 200 13523
+Internal Server Error: /admin/products/review/
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "products_review" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "products_review"
+                                          ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\views\decorators\cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 1926, in changelist_view
+    cl = self.get_changelist_instance(request)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\options.py", line 836, in get_changelist_instance
+    return ChangeList(
+           ^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\views\main.py", line 123, in __init__
+    self.get_results(request)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\contrib\admin\views\main.py", line 279, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\paginator.py", line 93, in count
+    return c()
+           ^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\query.py", line 608, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 568, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\query.py", line 554, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "products_review" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "products_review"
+                                          ^
+
+"GET /admin/products/review/ HTTP/1.1" 500 180534
+"GET /admin/ HTTP/1.1" 200 13523
+"GET /admin/analytics/ HTTP/1.1" 200 6034
+Watching for file changes with StatReloader
+"GET /admin/ HTTP/1.1" 200 13523
+"GET /admin/ HTTP/1.1" 200 13523
+"GET /admin/accounts/address/ HTTP/1.1" 200 14373
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/ HTTP/1.1" 200 13523
+"GET /admin/accounts/user/ HTTP/1.1" 200 17583
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/ HTTP/1.1" 200 13523
+"GET /admin/analytics/productview/ HTTP/1.1" 200 14250
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/ HTTP/1.1" 200 13523
+"GET /admin/analytics/salesmetrics/ HTTP/1.1" 200 13702
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/analytics/salesmetrics/add/ HTTP/1.1" 200 16615
+"GET /static/admin/js/calendar.js HTTP/1.1" 200 8466
+"GET /static/admin/css/forms.css HTTP/1.1" 200 9047
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /static/admin/css/widgets.css HTTP/1.1" 200 11900
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+"GET /admin/analytics/salesmetrics/ HTTP/1.1" 200 13702
+"GET /admin/ HTTP/1.1" 200 13523
+"GET /admin/analytics/productview/ HTTP/1.1" 200 14250
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/analytics/productview/add/ HTTP/1.1" 200 17650
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/analytics/productview/ HTTP/1.1" 200 14250
+"GET /admin/ HTTP/1.1" 200 13523
+"GET /admin/analytics/searchquery/ HTTP/1.1" 200 14250
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/analytics/searchquery/add/ HTTP/1.1" 200 16676
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/analytics/searchquery/ HTTP/1.1" 200 14250
+"GET /admin/ HTTP/1.1" 200 13523
+"GET /admin/auth/group/ HTTP/1.1" 200 13304
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/auth/group/add/ HTTP/1.1" 200 20907
+"GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+"GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15292
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /static/admin/img/icon-unknown.svg HTTP/1.1" 200 655
+"GET /static/admin/img/icon-unknown-alt.svg HTTP/1.1" 200 655
+"GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 3291
+"GET /admin/auth/group/ HTTP/1.1" 200 13304
+"GET /admin/ HTTP/1.1" 200 13523
+"GET /admin/cart/cartitem/ HTTP/1.1" 200 14209
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/cart/cartitem/add/ HTTP/1.1" 200 19254
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/cart/cartitem/ HTTP/1.1" 200 14209
+"GET /admin/ HTTP/1.1" 200 13523
+"GET /admin/manufacturing/manufacturingqueue/ HTTP/1.1" 200 14935
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/manufacturing/manufacturingqueue/add/ HTTP/1.1" 200 20868
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+"GET /admin/manufacturing/manufacturingqueue/ HTTP/1.1" 200 14935
+"GET /admin/ HTTP/1.1" 200 13523
+"GET /admin/notifications/notification/ HTTP/1.1" 200 15107
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/notifications/notification/add/ HTTP/1.1" 200 19209
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/notifications/notification/ HTTP/1.1" 200 15107
+"GET /admin/ HTTP/1.1" 200 13523
+"GET /admin/products/product/ HTTP/1.1" 200 15380
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/products/product/add/ HTTP/1.1" 200 23531
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/products/product/ HTTP/1.1" 200 15380
+"GET /admin/ HTTP/1.1" 200 13523
+Watching for file changes with StatReloader
+"OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+Bad Request: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 400 44
+Bad Request: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 400 44
+"OPTIONS /api/auth/register/ HTTP/1.1" 200 0
+Bad Request: /api/auth/register/
+"POST /api/auth/register/ HTTP/1.1" 400 87
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\models.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /api/auth/register/
+"POST /api/auth/register/ HTTP/1.1" 400 48
+Bad Request: /api/auth/register/
+"POST /api/auth/register/ HTTP/1.1" 400 48
+Not Found: /
+"GET / HTTP/1.1" 404 2980
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3031
+Not Found: /api/auth
+"GET /api/auth HTTP/1.1" 404 3022
+Not Found: /api/auth/
+"GET /api/auth/ HTTP/1.1" 404 3454
+Watching for file changes with StatReloader
+Bad Request: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 400 44
+"POST /api/auth/register/ HTTP/1.1" 201 460
+"OPTIONS /api/auth/profile/ HTTP/1.1" 200 0
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"POST /api/auth/login/ HTTP/1.1" 200 460
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4178
+"GET /static/admin/css/base.css HTTP/1.1" 200 21207
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+"GET /static/admin/css/login.css HTTP/1.1" 200 958
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 18533
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 13523
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /admin/accounts/user/ HTTP/1.1" 200 18127
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 6566
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 8943
+"GET /static/admin/js/core.js HTTP/1.1" 200 5682
+"GET /static/admin/js/actions.js HTTP/1.1" 200 7872
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/img/search.svg HTTP/1.1" 200 458
+"GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 292458
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"GET /static/admin/js/filters.js HTTP/1.1" 200 978
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+"GET /admin/accounts/user/?is_superuser__exact=1 HTTP/1.1" 200 18395
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/accounts/user/? HTTP/1.1" 200 18127
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /admin/accounts/user/4698a9e8-7054-4ef7-8fc6-05f61fcad6e7/change/ HTTP/1.1" 200 32219
+"GET /static/admin/js/calendar.js HTTP/1.1" 200 8466
+"GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+"GET /static/admin/css/forms.css HTTP/1.1" 200 9047
+"GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15292
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /static/admin/css/widgets.css HTTP/1.1" 200 11900
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /static/admin/img/icon-unknown.svg HTTP/1.1" 200 655
+"GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+"GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 3291
+"GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+"GET /static/admin/img/icon-unknown-alt.svg HTTP/1.1" 200 655
+"GET /admin/accounts/user/4698a9e8-7054-4ef7-8fc6-05f61fcad6e7/delete/ HTTP/1.1" 200 13049
+"GET /static/admin/js/cancel.js HTTP/1.1" 200 884
+"POST /admin/accounts/user/4698a9e8-7054-4ef7-8fc6-05f61fcad6e7/delete/ HTTP/1.1" 302 0
+"GET /admin/accounts/user/ HTTP/1.1" 200 17756
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 27
+Bad Request: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 400 44
+"POST /api/auth/register/ HTTP/1.1" 201 460
+"GET /admin/accounts/user/ HTTP/1.1" 200 18127
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/accounts/user/ HTTP/1.1" 200 18127
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/accounts/user/ HTTP/1.1" 200 18127
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"POST /api/auth/login/ HTTP/1.1" 200 460
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Bad Request: /api/auth/register/
+"POST /api/auth/register/ HTTP/1.1" 400 50
+Bad Request: /api/auth/register/
+"POST /api/auth/register/ HTTP/1.1" 400 50
+Bad Request: /api/auth/register/
+"POST /api/auth/register/ HTTP/1.1" 400 50
+"OPTIONS /api/auth/register/ HTTP/1.1" 200 0
+Bad Request: /api/auth/register/
+"POST /api/auth/register/ HTTP/1.1" 400 50
+Bad Request: /api/auth/register/
+"POST /api/auth/register/ HTTP/1.1" 400 50
+Bad Request: /api/auth/register/
+"POST /api/auth/register/ HTTP/1.1" 400 50
+"POST /api/auth/login/ HTTP/1.1" 200 460
+"OPTIONS /api/auth/profile/ HTTP/1.1" 200 0
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Watching for file changes with StatReloader
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+"POST /api/auth/login/ HTTP/1.1" 200 460
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+"POST /api/auth/login/ HTTP/1.1" 200 460
+"POST /api/auth/login/ HTTP/1.1" 200 460
+"OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+Bad Request: /api/auth/register/
+"POST /api/auth/register/ HTTP/1.1" 400 50
+"POST /api/auth/login/ HTTP/1.1" 200 460
+"OPTIONS /api/cart/ HTTP/1.1" 200 0
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+"OPTIONS /api/cart/summary/ HTTP/1.1" 200 0
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4178
+"GET /static/admin/css/base.css HTTP/1.1" 200 21207
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+"GET /static/admin/css/login.css HTTP/1.1" 200 958
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 18533
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3031
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 13816
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /admin/accounts/user/ HTTP/1.1" 200 18127
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 6566
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/js/core.js HTTP/1.1" 200 5682
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 8943
+"GET /static/admin/js/actions.js HTTP/1.1" 200 7872
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 292458
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+"GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+"GET /static/admin/img/search.svg HTTP/1.1" 200 458
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"GET /static/admin/js/filters.js HTTP/1.1" 200 978
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+"GET /admin/ HTTP/1.1" 200 13816
+"GET /admin/accounts/address/ HTTP/1.1" 200 14373
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/ HTTP/1.1" 200 13816
+"GET /admin/analytics/productview/ HTTP/1.1" 200 14250
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/analytics/productview/add/ HTTP/1.1" 200 17742
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+"GET /static/admin/css/forms.css HTTP/1.1" 200 9047
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /static/admin/css/widgets.css HTTP/1.1" 200 11900
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/analytics/productview/ HTTP/1.1" 200 14250
+"GET /admin/ HTTP/1.1" 200 13816
+"GET /admin/analytics/salesmetrics/ HTTP/1.1" 200 13702
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/analytics/salesmetrics/add/ HTTP/1.1" 200 16615
+"GET /static/admin/js/calendar.js HTTP/1.1" 200 8466
+"GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+"GET /admin/analytics/salesmetrics/ HTTP/1.1" 200 13702
+"GET /admin/ HTTP/1.1" 200 13816
+"GET /admin/analytics/searchquery/ HTTP/1.1" 200 14250
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/ HTTP/1.1" 200 13816
+"GET /admin/auth/group/ HTTP/1.1" 200 13304
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/auth/group/add/ HTTP/1.1" 200 20907
+"GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+"GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15292
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /static/admin/img/icon-unknown.svg HTTP/1.1" 200 655
+"GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 3291
+"GET /static/admin/img/icon-unknown-alt.svg HTTP/1.1" 200 655
+"GET /admin/auth/group/ HTTP/1.1" 200 13304
+"GET /admin/ HTTP/1.1" 200 13816
+"GET /admin/cart/cartitem/ HTTP/1.1" 200 14209
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/cart/cartitem/add/ HTTP/1.1" 200 19346
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/cart/cartitem/ HTTP/1.1" 200 14209
+"GET /admin/ HTTP/1.1" 200 13816
+"GET /admin/manufacturing/manufacturingqueue/ HTTP/1.1" 200 14935
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/manufacturing/manufacturingqueue/add/ HTTP/1.1" 200 20868
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+"GET /admin/manufacturing/manufacturingqueue/ HTTP/1.1" 200 14935
+"GET /admin/ HTTP/1.1" 200 13816
+"GET /admin/orders/orderitem/ HTTP/1.1" 200 13900
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/orders/orderitem/add/ HTTP/1.1" 200 21248
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/orders/orderitem/ HTTP/1.1" 200 13900
+"GET /admin/ HTTP/1.1" 200 13816
+"GET /admin/cart/cartitem/ HTTP/1.1" 200 14209
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/cart/cartitem/add/ HTTP/1.1" 200 19346
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/products/product/add/?_to_field=id&_popup=1 HTTP/1.1" 200 14270
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"POST /admin/cart/cartitem/add/ HTTP/1.1" 200 19489
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/products/product/add/?_to_field=id&_popup=1 HTTP/1.1" 200 14270
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"POST /admin/products/product/add/?_to_field=id&_popup=1 HTTP/1.1" 200 14469
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"POST /admin/products/product/add/?_to_field=id&_popup=1 HTTP/1.1" 200 362
+"GET /static/admin/js/popup_response.js HTTP/1.1" 200 551
+"POST /admin/cart/cartitem/add/ HTTP/1.1" 302 0
+"GET /admin/cart/cartitem/ HTTP/1.1" 200 16660
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/cart/cartitem/ HTTP/1.1" 200 16394
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/cart/cartitem/ HTTP/1.1" 200 16394
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+"POST /api/auth/login/ HTTP/1.1" 200 460
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Forbidden: /api/cart/
+"OPTIONS /api/auth/profile/ HTTP/1.1" 200 0
+"GET /api/cart/ HTTP/1.1" 403 58
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Forbidden: /api/cart/
+Forbidden: /api/auth/profile/
+"GET /api/cart/ HTTP/1.1" 403 58
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+"POST /api/auth/login/ HTTP/1.1" 200 460
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/cart/
+Forbidden: /api/auth/profile/
+"GET /api/cart/ HTTP/1.1" 403 58
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+"OPTIONS /api/cart/ HTTP/1.1" 200 0
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+"OPTIONS /api/cart/summary/ HTTP/1.1" 200 0
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+"OPTIONS /api/cart/ HTTP/1.1" 200 0
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+"OPTIONS /api/cart/summary/ HTTP/1.1" 200 0
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/cart/
+Forbidden: /api/auth/profile/
+"GET /api/cart/ HTTP/1.1" 403 58
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+Not Found: /api/cart/summary/
+"GET /api/cart/summary/ HTTP/1.1" 404 4474
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+"OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+"POST /api/auth/login/ HTTP/1.1" 200 460
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+Not Found: /api/cart/cart
+"GET /api/cart/cart HTTP/1.1" 404 4462
+Not Found: /api/cart/cart
+"GET /api/cart/cart HTTP/1.1" 404 4462
+Not Found: /api/cart/cart
+"GET /api/cart/cart HTTP/1.1" 404 4462
+Not Found: /api/cart/cart
+"GET /api/cart/cart HTTP/1.1" 404 4462
+Not Found: /api/cart/cart
+"GET /api/cart/cart HTTP/1.1" 404 4462
+Not Found: /api/cart/cart
+"GET /api/cart/cart HTTP/1.1" 404 4462
+"GET /api/cart HTTP/1.1" 301 0
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+Forbidden: /api/cart/
+"GET /api/cart/ HTTP/1.1" 403 58
+"POST /api/auth/login/ HTTP/1.1" 200 460
+"OPTIONS /api/auth/profile/ HTTP/1.1" 200 0
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+"POST /api/auth/login/ HTTP/1.1" 200 460
+"POST /api/auth/login/ HTTP/1.1" 200 460
+"OPTIONS /api/auth/register/ HTTP/1.1" 200 0
+Bad Request: /api/auth/register/
+"POST /api/auth/register/ HTTP/1.1" 400 50
+"POST /api/auth/login/ HTTP/1.1" 200 460
+"POST /api/auth/login/ HTTP/1.1" 200 460
+Forbidden: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 403 58
+C:\Users\sahil_qx\Downloads\attire-auth\backend\fashionai\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\fashionai\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\fashionai\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /
+"GET / HTTP/1.1" 404 3256
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3307
+"GET /api/token HTTP/1.1" 301 0
+Internal Server Error: /api/token/
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework_simplejwt\views.py", line 29, in get_serializer_class
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'rest_framework_simplejwt.serializers'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\renderers.py", line 723, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\renderers.py", line 654, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\renderers.py", line 553, in get_raw_data_form
+    serializer = view.get_serializer()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\generics.py", line 108, in get_serializer
+    serializer_class = self.get_serializer_class()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework_simplejwt\views.py", line 32, in get_serializer_class
+ImportError: Could not import serializer 'rest_framework_simplejwt.serializers.TokenObtainPairSerializer'
+"GET /api/token/ HTTP/1.1" 500 122005
+Not Found: /api/token//
+"GET /api/token// HTTP/1.1" 404 3307
+Internal Server Error: /api/token/
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework_simplejwt\views.py", line 29, in get_serializer_class
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\module_loading.py", line 30, in import_string
+    return cached_import(module_path, class_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\utils\module_loading.py", line 15, in cached_import
+    module = import_module(module_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\importlib\__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'rest_framework_simplejwt.serializers'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\response.py", line 70, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\renderers.py", line 723, in render
+    context = self.get_context(data, accepted_media_type, renderer_context)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\renderers.py", line 654, in get_context
+    raw_data_post_form = self.get_raw_data_form(data, view, 'POST', request)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\renderers.py", line 553, in get_raw_data_form
+    serializer = view.get_serializer()
+                 ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework\generics.py", line 108, in get_serializer
+    serializer_class = self.get_serializer_class()
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sahil_qx\AppData\Roaming\Python\Python312\site-packages\rest_framework_simplejwt\views.py", line 32, in get_serializer_class
+ImportError: Could not import serializer 'rest_framework_simplejwt.serializers.TokenObtainPairSerializer'
+"GET /api/token/ HTTP/1.1" 500 122005
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+"OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+"POST /api/auth/login/ HTTP/1.1" 200 787
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\fashionai\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\fashionai\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\fashionai\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\fashionai\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\fashionai\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Not Found: /api/auth/login//api/profile/
+"GET /api/auth/login//api/profile/ HTTP/1.1" 404 3965
+Not Found: /api/auth//api/profile/
+"GET /api/auth//api/profile/ HTTP/1.1" 404 3947
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Not Found: /api/auth/login/logout/
+"POST /api/auth/login/logout/ HTTP/1.1" 404 3948
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/logout/
+"POST /api/auth/logout/ HTTP/1.1" 401 58
+Bad Request: /api/auth/register/
+"POST /api/auth/register/ HTTP/1.1" 400 50
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/logout/
+"POST /api/auth/logout/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/logout/
+"POST /api/auth/logout/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/logout/
+"POST /api/auth/logout/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/logout/
+"POST /api/auth/logout/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/logout/
+"POST /api/auth/logout/ HTTP/1.1" 401 58
+Bad Request: /api/auth/register/
+"POST /api/auth/register/ HTTP/1.1" 400 50
+Bad Request: /api/auth/register/
+"POST /api/auth/register/ HTTP/1.1" 400 50
+"OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+"POST /api/auth/login/ HTTP/1.1" 200 235
+"OPTIONS /api/auth/profile/ HTTP/1.1" 200 0
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"POST /api/auth/login/ HTTP/1.1" 200 235
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Not Found: /api/auth/refresh/
+"POST /api/auth/refresh/ HTTP/1.1" 404 3933
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Not Found: /api/auth/refresh/
+"POST /api/auth/refresh/ HTTP/1.1" 404 3933
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Not Found: /api/auth/refresh/
+"POST /api/auth/refresh/ HTTP/1.1" 404 3933
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Not Found: /api/refresh/
+"POST /api/refresh/ HTTP/1.1" 404 3311
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Not Found: /refresh/
+"POST /refresh/ HTTP/1.1" 404 3299
+Not Found: /
+"GET / HTTP/1.1" 404 3256
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Bad Request: /api/token/refresh/
+"POST /api/token/refresh/ HTTP/1.1" 400 39
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Bad Request: /api/token/refresh/
+"POST /api/token/refresh/ HTTP/1.1" 400 39
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Not Found: /
+"GET / HTTP/1.1" 404 3116
+Not Found: /api/auth
+"GET /api/auth HTTP/1.1" 404 3158
+Not Found: /api/auth/
+"GET /api/auth/ HTTP/1.1" 404 3960
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 305
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"POST /api/auth/login/ HTTP/1.1" 200 235
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"POST /api/auth/login/ HTTP/1.1" 200 235
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 305
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\views.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 29
+C:\Users\sahil_qx\Downloads\attire-auth\backend\accounts\serializers.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+"OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"POST /api/auth/login/ HTTP/1.1" 200 235
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"POST /api/auth/login/ HTTP/1.1" 200 235
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/login/
+"POST /api/auth/login/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"POST /api/auth/login/ HTTP/1.1" 200 235
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+"POST /api/auth/login/ HTTP/1.1" 200 235
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+"OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/logout/
+"POST /api/auth/logout/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"POST /api/auth/logout/ HTTP/1.1" 200 24
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+Unauthorized: /api/auth/token/refresh/
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"POST /api/auth/login/ HTTP/1.1" 200 235
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"POST /api/auth/logout/ HTTP/1.1" 200 24
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"POST /api/auth/login/ HTTP/1.1" 200 235
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"POST /api/auth/logout/ HTTP/1.1" 200 24
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/token/refresh/
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"POST /api/auth/login/ HTTP/1.1" 200 235
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"POST /api/auth/logout/ HTTP/1.1" 200 24
+"POST /api/auth/login/ HTTP/1.1" 200 235
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"POST /api/auth/logout/ HTTP/1.1" 200 24
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"POST /api/auth/login/ HTTP/1.1" 200 235
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"POST /api/auth/logout/ HTTP/1.1" 200 24
+"POST /api/auth/login/ HTTP/1.1" 200 235
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 172
+"POST /api/auth/token/refresh/ HTTP/1.1" 200 290
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+Unauthorized: /api/auth/profile/
+"GET /api/auth/profile/ HTTP/1.1" 401 58
+Unauthorized: /api/auth/token/refresh/
+"POST /api/auth/token/refresh/ HTTP/1.1" 401 90
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197
+"GET /api/auth/profile/ HTTP/1.1" 200 197

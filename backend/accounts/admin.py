@@ -1,0 +1,20 @@
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from .models import User, Address
+
+@admin.register(User)
+class UserAdmin(BaseUserAdmin):
+    list_display = ('email', 'username', 'first_name', 'last_name', 'is_staff', 'created_at')
+    list_filter = ('is_staff', 'is_superuser', 'is_active', 'created_at')
+    search_fields = ('email', 'username', 'first_name', 'last_name')
+    ordering = ('-created_at',)
+    
+    fieldsets = BaseUserAdmin.fieldsets + (
+        ('Additional Info', {'fields': ('phone', 'avatar', 'email_verified')}),
+    )
+
+@admin.register(Address)
+class AddressAdmin(admin.ModelAdmin):
+    list_display = ('user', 'type', 'first_name', 'last_name', 'city', 'state', 'is_default')
+    list_filter = ('type', 'is_default', 'country', 'state')
+    search_fields = ('user__email', 'first_name', 'last_name', 'city')
