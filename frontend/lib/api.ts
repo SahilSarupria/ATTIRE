@@ -1,5 +1,3 @@
-import { API_URL } from '@/app/env';
-
 // Token management
 const getToken = () => {
   if (typeof window !== 'undefined') {

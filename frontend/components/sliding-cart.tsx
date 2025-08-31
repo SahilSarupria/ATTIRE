@@ -1,126 +1,214 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { X, Plus, Minus, Trash2, ShoppingBag, ArrowRight } from "lucide-react"
+import { useState } from "react"
+import { X, Plus, Minus, Trash2, ShoppingBag, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-
+import { useCart } from "@/app/context/CartContext"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 import { useToast } from "@/hooks/use-toast"
-
-// Define cart item type
-type CartItemType = {
-  id: string
-  name: string
-  price: number
-  quantity: number
-  image: string
-  size?: string
-  color?: string
-}
+import { useRouter } from "next/navigation"
 
 interface SlidingCartProps {
   isOpen: boolean
   onClose: () => void
 }
 
+// Available sizes in order
+const SIZES = ["XS", "S", "M", "L", "XL", "XXL"]
+
+// Enhanced function to get image URL with primary media priority
+const getImageUrl = (item: any) => {
+  // First, try to find primary image or video in media table
+  const primaryMedia = item.product?.media?.find(
+    (media: any) => media.is_primary && (media.media_type === "image" || media.media_type === "video"),
+  )
+
+  if (primaryMedia) {
+    const mediaUrl = primaryMedia.media_url
+    if (mediaUrl.startsWith("http")) return mediaUrl
+    if (mediaUrl.startsWith("/")) return mediaUrl
+    return `/${mediaUrl}`
+  }
+
+  // Fallback to product image_url
+  if (item.product?.image_url) {
+    if (item.product.image_url.startsWith("http")) return item.product.image_url
+    if (item.product.image_url.startsWith("/")) return item.product.image_url
+    return `/${item.product.image_url}`
+  }
+
+  // Fallback to item image
+  if (item.image) {
+    if (item.image.startsWith("http")) return item.image
+    if (item.image.startsWith("/")) return item.image
+    return `/${item.image}`
+  }
+
+  // Final fallback to placeholder
+  return "/placeholder.svg"
+}
+
+// Smart function to get available colors from product variants
+const getAvailableColors = (item: any) => {
+  // Try to get colors from product variants first
+  if (item.product?.variants && Array.isArray(item.product.variants)) {
+    const uniqueColors = new Set()
+    const colorOptions: { name: string; value: string }[] = []
+
+    item.product.variants.forEach((variant: any) => {
+      if (variant.color && !uniqueColors.has(variant.color)) {
+        uniqueColors.add(variant.color)
+        // Map color names to hex values (you can expand this mapping)
+        const colorMap: Record<string, string> = {
+          black: "#000000",
+          white: "#FFFFFF",
+          red: "#EF4444",
+          blue: "#3B82F6",
+          green: "#10B981",
+          gray: "#6B7280",
+          orange: "#F97316",
+          purple: "#8B5CF6",
+          pink: "#EC4899",
+          yellow: "#EAB308",
+          navy: "#1E3A8A",
+          brown: "#A3A3A3",
+        }
+
+        const colorValue = colorMap[variant.color.toLowerCase()] || "#6B7280"
+        colorOptions.push({
+          name: variant.color,
+          value: colorValue,
+        })
+      }
+    })
+
+    if (colorOptions.length > 0) {
+      return colorOptions
+    }
+  }
+
+  // Fallback to default colors if no variants available
+  return [
+    { name: "Black", value: "#000000" },
+    { name: "White", value: "#FFFFFF" },
+    { name: "Red", value: "#EF4444" },
+    { name: "Blue", value: "#3B82F6" },
+    { name: "Green", value: "#10B981" },
+  ]
+}
+
+// Smart function to get available sizes from product variants
+const getAvailableSizes = (item: any) => {
+  if (item.product?.variants && Array.isArray(item.product.variants)) {
+    const uniqueSizes = new Set()
+    item.product.variants.forEach((variant: any) => {
+      if (variant.size) {
+        const sizeName = typeof variant.size === "string" ? variant.size : variant.size.name
+        if (sizeName && SIZES.includes(sizeName)) {
+          uniqueSizes.add(sizeName)
+        }
+      }
+    })
+
+    if (uniqueSizes.size > 0) {
+      // Return sizes in the correct order
+      return SIZES.filter((size) => uniqueSizes.has(size))
+    }
+  }
+
+  // Fallback to all sizes if no variants available
+  return SIZES
+}
+
+// Smart function to get recommended size based on user preferences or most popular
+const getRecommendedSize = (item: any) => {
+  const availableSizes = getAvailableSizes(item)
+
+  // Try to get from user preferences (you can implement this based on your user system)
+  // For now, we'll use "M" as default or the middle size from available sizes
+  if (availableSizes.includes("M")) {
+    return "M"
+  }
+
+  // If M is not available, return the middle size
+  const middleIndex = Math.floor(availableSizes.length / 2)
+  return availableSizes[middleIndex] || "M"
+}
+
 export default function SlidingCart({ isOpen, onClose }: SlidingCartProps) {
   const { toast } = useToast()
-  const [cartItems, setCartItems] = useState<CartItemType[]>([])
-  const [isLoading, setIsLoading] = useState(false)
+  const { cartItems, updateQuantity, removeItem, clearCart, updateItemColor, updateItemSize } = useCart()
+  const router = useRouter()
 
-  // Mock cart data - in real app, this would come from context/state management
-  useEffect(() => {
-    // Simulate loading cart items
-    setCartItems([
-      {
-        id: "CART-1",
-        name: "Premium Cotton T-Shirt",
-        price: 49.99,
-        quantity: 2,
-        image: "/placeholder.svg?height=80&width=80",
-        size: "M",
-        color: "Black",
-      },
-      {
-        id: "CART-2",
-        name: "Designer Hoodie",
-        price: 89.99,
-        quantity: 1,
-        image: "/placeholder.svg?height=80&width=80",
-        size: "L",
-        color: "Orange",
-      },
-      {
-        id: "CART-3",
-        name: "Slim Fit Jeans",
-        price: 129.99,
-        quantity: 1,
-        image: "/placeholder.svg?height=80&width=80",
-        size: "32",
-        color: "Dark Blue",
-      },
-    ])
-  }, [])
-
-  const updateQuantity = (id: string, newQuantity: number) => {
-    if (newQuantity < 1) {
-      removeItem(id)
-      return
-    }
-
-    setCartItems((items) => items.map((item) => (item.id === id ? { ...item, quantity: newQuantity } : item)))
-
-    toast({
-      title: "Cart Updated",
-      description: "Item quantity has been updated.",
-      duration: 2000,
-    })
-  }
-
-  const removeItem = (id: string) => {
-    setCartItems((items) => items.filter((item) => item.id !== id))
-
-    toast({
-      title: "Item Removed",
-      description: "Item has been removed from your cart.",
-      duration: 2000,
-    })
-  }
-
-  const clearCart = () => {
-    setCartItems([])
-
-    toast({
-      title: "Cart Cleared",
-      description: "All items have been removed from your cart.",
-      duration: 2000,
-    })
-  }
-
-  const handleCheckout = () => {
-    setIsLoading(true)
-
-    // Simulate checkout process
-    setTimeout(() => {
-      setIsLoading(false)
-      onClose()
-      toast({
-        title: "Checkout Initiated",
-        description: "Redirecting to checkout page...",
-        duration: 3000,
-      })
-    }, 2000)
-  }
-
-  // Calculate totals
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
   const shipping = subtotal > 100 ? 0 : 9.99
   const tax = subtotal * 0.08 // 8% tax
   const total = subtotal + shipping + tax
-
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleCheckout = (): void => {
+    if (cartItems.length === 0) {
+      toast({
+        title: "Cart is empty",
+        description: "Add some items to your cart before checkout.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    setIsLoading(true)
+
+    // Close the cart and navigate to checkout
+    setTimeout(() => {
+      setIsLoading(false)
+      onClose()
+      router.push("/checkout")
+    }, 500)
+  }
+
+  const handleItemClick = (productId: string) => {
+    onClose()
+    router.push(`/product/${productId}`)
+  }
+
+  const handleColorChange = (itemId: string, color: string) => {
+    if (updateItemColor) {
+      updateItemColor(itemId, color)
+    }
+  }
+
+  const handleSizeChange = (itemId: string, newSize: string) => {
+    if (updateItemSize) {
+      updateItemSize(itemId, newSize)
+    }
+  }
+
+  const getSizeIndex = (size: string, availableSizes: string[]) => {
+    return availableSizes.indexOf(size)
+  }
+
+  const changeSizeByDirection = (
+    itemId: string,
+    currentSize: string,
+    direction: "prev" | "next",
+    availableSizes: string[],
+  ) => {
+    const currentIndex = getSizeIndex(currentSize, availableSizes)
+    let newIndex
+
+    if (direction === "prev") {
+      newIndex = currentIndex > 0 ? currentIndex - 1 : 0
+    } else {
+      newIndex = currentIndex < availableSizes.length - 1 ? currentIndex + 1 : availableSizes.length - 1
+    }
+
+    if (newIndex !== currentIndex) {
+      handleSizeChange(itemId, availableSizes[newIndex])
+    }
+  }
 
   return (
     <>
@@ -179,74 +267,158 @@ export default function SlidingCart({ isOpen, onClose }: SlidingCartProps) {
                 <>
                   {/* Items List */}
                   <div className="flex-1 overflow-y-auto p-6 space-y-4">
-                    {cartItems.map((item) => (
-                      <motion.div
-                        key={item.id}
-                        layout
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        className="bg-gray-800/50 rounded-lg p-4 border border-gray-700/50"
-                      >
-                        <div className="flex gap-4">
-                          {/* Product Image */}
-                          <div className="h-20 w-20 rounded-md overflow-hidden bg-gray-700 flex-shrink-0">
-                            <img
-                              src={item.image || "/placeholder.svg"}
-                              alt={item.name}
-                              className="h-full w-full object-cover"
-                            />
+                    {cartItems.map((item) => {
+                      const availableColors = getAvailableColors(item)
+                      const availableSizes = getAvailableSizes(item)
+                      const recommendedSize = getRecommendedSize(item)
+                      const currentSize = item.size || recommendedSize
+
+                      return (
+                        <motion.div
+                          key={item.id}
+                          layout
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          className="bg-gray-800/50 rounded-lg p-4 border border-gray-700/50"
+                        >
+                          <div className="flex gap-4">
+                            {/* Product Image - Clickable with enhanced image handling */}
+                            <div className="flex flex-col items-center gap-2">
+                              <div
+                                className="h-20 w-20 rounded-md overflow-hidden bg-gray-700 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
+                                onClick={() => handleItemClick(item.product?.id || item.id)}
+                              >
+                                <img
+                                  src={getImageUrl(item) || "/placeholder.svg"}
+                                  alt={item.name}
+                                  className="h-full w-full object-cover"
+                                  onError={(e) => {
+                                    e.currentTarget.src = "/placeholder.svg"
+                                  }}
+                                />
+                              </div>
+
+                              {/* Enhanced Color Selection - Below Image */}
+                              <div className="grid grid-cols-4 gap-1 w-fit">
+                                {availableColors.slice(0, 8).map((color) => (
+                                  <button
+                                    key={color.name}
+                                    onClick={() => handleColorChange(item.id, color.name)}
+                                    className={`w-4 h-4 rounded-full border-2 transition-all hover:scale-110 ${
+                                      item.color === color.name
+                                        ? "border-orange-500 shadow-lg ring-2 ring-orange-500/30"
+                                        : "border-gray-500 hover:border-gray-300"
+                                    }`}
+                                    style={{ backgroundColor: color.value }}
+                                    title={color.name}
+                                  />
+                                ))}
+                              </div>
+                              {availableColors.length > 8 && (
+                                <span className="text-xs text-gray-400">+{availableColors.length - 8} more</span>
+                              )}
+                            </div>
+
+                            {/* Product Details */}
+                            <div className="flex-1 min-w-0">
+                              <h3
+                                className="font-medium text-white text-sm line-clamp-2 mb-2 cursor-pointer hover:text-orange-400 transition-colors"
+                                onClick={() => handleItemClick(item.product?.id || item.id)}
+                              >
+                                {item.name}
+                              </h3>
+
+                              {/* Enhanced Size Selection */}
+                              <div className="mb-3">
+                                <span className="text-xs text-gray-400 block mb-2">
+                                  Size: {availableSizes.length} available
+                                </span>
+                                <div className="flex items-center gap-1">
+                                  <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={() => changeSizeByDirection(item.id, currentSize, "prev", availableSizes)}
+                                    className="h-7 w-7 text-gray-400 hover:text-white hover:bg-gray-700 p-0"
+                                    disabled={getSizeIndex(currentSize, availableSizes) === 0}
+                                  >
+                                    <ChevronLeft className="h-4 w-4" />
+                                  </Button>
+                                  <span
+                                    className={`mx-2 px-3 py-1 rounded-md font-medium text-xs transition-colors ${
+                                      currentSize === recommendedSize
+                                        ? "bg-green-500 text-black"
+                                        : "bg-gray-600 text-white"
+                                    }`}
+                                    title={currentSize === recommendedSize ? "Recommended size" : ""}
+                                  >
+                                    {currentSize}
+                                    {currentSize === recommendedSize && " ★"}
+                                  </span>
+                                  <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={() => changeSizeByDirection(item.id, currentSize, "next", availableSizes)}
+                                    className="h-7 w-7 text-gray-400 hover:text-white hover:bg-gray-700 p-0"
+                                    disabled={getSizeIndex(currentSize, availableSizes) === availableSizes.length - 1}
+                                  >
+                                    <ChevronRight className="h-4 w-4" />
+                                  </Button>
+                                </div>
+                                {availableSizes.length > 0 && (
+                                  <div className="text-xs text-gray-500 mt-1">
+                                    Available: {availableSizes.join(", ")}
+                                  </div>
+                                )}
+                              </div>
+
+                              <div className="flex items-center justify-between">
+                                {(() => {
+                                  const unitPrice = Number(item.product?.base_price ?? item.price) || 0
+                                  return <span className="text-orange-400 font-semibold">${unitPrice.toFixed(2)}</span>
+                                })()}
+
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  onClick={() => removeItem(item.id)}
+                                  className="h-8 w-8 text-red-400 hover:text-red-300 hover:bg-red-950/30"
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                  <span className="sr-only">Remove item</span>
+                                </Button>
+                              </div>
+                            </div>
                           </div>
 
-                          {/* Product Details */}
-                          <div className="flex-1 min-w-0">
-                            <h3 className="font-medium text-white text-sm line-clamp-2 mb-1">{item.name}</h3>
-                            <div className="flex gap-2 text-xs text-gray-400 mb-2">
-                              {item.size && <span>Size: {item.size}</span>}
-                              {item.color && <span>Color: {item.color}</span>}
-                            </div>
-                            <div className="flex items-center justify-between">
-                              <span className="text-orange-400 font-semibold">${item.price.toFixed(2)}</span>
+                          {/* Quantity Controls */}
+                          <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-700/50">
+                            <div className="flex items-center gap-2">
                               <Button
-                                variant="ghost"
+                                variant="outline"
                                 size="icon"
-                                onClick={() => removeItem(item.id)}
-                                className="h-8 w-8 text-red-400 hover:text-red-300 hover:bg-red-950/30"
+                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                className="h-8 w-8 border-orange-500/50 hover:bg-orange-500/20"
                               >
-                                <Trash2 className="h-4 w-4" />
-                                <span className="sr-only">Remove item</span>
+                                <Minus className="h-3 w-3" />
+                                <span className="sr-only">Decrease quantity</span>
+                              </Button>
+                              <span className="w-8 text-center text-white font-medium">{item.quantity}</span>
+                              <Button
+                                variant="outline"
+                                size="icon"
+                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                className="h-8 w-8 border-orange-500/50 hover:bg-orange-500/20"
+                              >
+                                <Plus className="h-3 w-3" />
+                                <span className="sr-only">Increase quantity</span>
                               </Button>
                             </div>
+                            <span className="text-white font-semibold">${(item.price * item.quantity).toFixed(2)}</span>
                           </div>
-                        </div>
-
-                        {/* Quantity Controls */}
-                        <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-700/50">
-                          <div className="flex items-center gap-2">
-                            <Button
-                              variant="outline"
-                              size="icon"
-                              onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                              className="h-8 w-8 border-orange-500/50 hover:bg-orange-500/20"
-                            >
-                              <Minus className="h-3 w-3" />
-                              <span className="sr-only">Decrease quantity</span>
-                            </Button>
-                            <span className="w-8 text-center text-white font-medium">{item.quantity}</span>
-                            <Button
-                              variant="outline"
-                              size="icon"
-                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                              className="h-8 w-8 border-orange-500/50 hover:bg-orange-500/20"
-                            >
-                              <Plus className="h-3 w-3" />
-                              <span className="sr-only">Increase quantity</span>
-                            </Button>
-                          </div>
-                          <span className="text-white font-semibold">${(item.price * item.quantity).toFixed(2)}</span>
-                        </div>
-                      </motion.div>
-                    ))}
+                        </motion.div>
+                      )
+                    })}
                   </div>
 
                   {/* Cart Summary */}

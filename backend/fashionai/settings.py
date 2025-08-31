@@ -1,6 +1,7 @@
 import os
 import environ
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -17,7 +18,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-your-secret-key-here-chang
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,192.168.29.24').split(',')
 
 # Application definition
 DJANGO_APPS = [
@@ -44,6 +45,10 @@ LOCAL_APPS = [
     'notifications',
     'analytics',
 ]
+
+# CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_CREDENTIALS = True  # Required for cookie use
+
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -89,6 +94,7 @@ DATABASES = {
         ssl_require=True
     )
 }
+
 
 
 # Password validation
@@ -145,6 +151,15 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
 ]
 
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^http:\/\/192\.168\.29\.24:\d{1,5}$",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://192.168.29.24:3000",
+]
+
 CORS_ALLOW_CREDENTIALS = True
 
 # JWT Settings
@@ -153,18 +168,18 @@ JWT_ALGORITHM = 'HS256'
 JWT_EXPIRATION_DELTA = 7 * 24 * 60 * 60  # 7 days in seconds
 
 # Stripe settings
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', 'sk_test_your_stripe_key_here')
-STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY', 'pk_test_your_stripe_key_here')
-STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', 'whsec_your_webhook_secret_here')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', 'sk_test_51RXOx683gfas0A1SFbGK1SZdSyb6y9aQepPhLjZnXc8qmMSWwuXzM64QSEcbArmJx68WuPoQb50F2J1H03wCxotQ00B4ht0NQ7')
+STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY', 'pk_test_51RXOx683gfas0A1S5e3qT7TvwcbBkXh3ac0e6XNS4ilpPZ34hpSjF50NA4yAzguq02O2vWzYpKRANdBugNhyEnY2001nF8qVkZ')
+#STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', 'whsec_your_webhook_secret_here')
 
 # Email settings
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # For development
-EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.gmail.com')
-EMAIL_PORT = int(os.getenv('EMAIL_PORT', '587'))
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # For development
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_PORT = 2525
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'your-email@gmail.com')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'your-app-password')
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@fashionai.com')
+EMAIL_HOST_USER = '5e9bd645031399'
+EMAIL_HOST_PASSWORD = 'cc646ff84b75d8'
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@dxrkice.com')
 
 # AI Service settings
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', 'sk-your-openai-key-here')
@@ -177,6 +192,7 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
+
 
 # If Redis is not available, use database for Celery
 try:

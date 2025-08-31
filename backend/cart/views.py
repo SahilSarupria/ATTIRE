@@ -1,8 +1,9 @@
 from rest_framework import generics, status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from .models import CartItem, WishlistItem
+from rest_framework.permissions import IsAuthenticated
 from .serializers import CartItemSerializer, WishlistItemSerializer
 from products.models import Product, ProductVariant
 
@@ -13,6 +14,7 @@ class CartItemListView(generics.ListAPIView):
         return CartItem.objects.filter(user=self.request.user).order_by('-created_at')
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def get_cart(request):
     """Get cart items for the authenticated user"""
     cart_items = CartItem.objects.filter(user=request.user).order_by('-created_at')
@@ -20,6 +22,7 @@ def get_cart(request):
     return Response({'items': serializer.data})
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def add_to_cart(request):
     product_id = request.data.get('product_id') or request.data.get('productId')
     variant_id = request.data.get('variant_id') or request.data.get('variantId')
@@ -52,6 +55,7 @@ def add_to_cart(request):
     return Response({'item': serializer.data}, status=status.HTTP_201_CREATED)
 
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
 def update_cart_item(request, item_id):
     cart_item = get_object_or_404(CartItem, id=item_id, user=request.user)
     
@@ -64,6 +68,7 @@ def update_cart_item(request, item_id):
     return Response(serializer.data)
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def remove_from_cart(request):
     item_id = request.query_params.get('itemId')
     if not item_id:
@@ -74,6 +79,7 @@ def remove_from_cart(request):
     return Response({'success': True}, status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def clear_cart(request):
     CartItem.objects.filter(user=request.user).delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
@@ -86,6 +92,7 @@ class WishlistItemListView(generics.ListAPIView):
         return WishlistItem.objects.filter(user=self.request.user).order_by('-created_at')
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def add_to_wishlist(request):
     product_id = request.data.get('product_id')
     product = get_object_or_404(Product, id=product_id)
@@ -100,6 +107,7 @@ def add_to_wishlist(request):
     return Response(serializer.data, status=status_code)
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def remove_from_wishlist(request, item_id):
     wishlist_item = get_object_or_404(WishlistItem, id=item_id, user=request.user)
     wishlist_item.delete()

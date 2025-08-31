@@ -1,51 +1,721 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Order Confirmation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - DXRKICE</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background: #f8f9fa; padding: 20px; text-align: center; }
-        .order-details { background: #fff; border: 1px solid #ddd; padding: 20px; margin: 20px 0; }
-        .item { border-bottom: 1px solid #eee; padding: 10px 0; }
-        .total { font-weight: bold; font-size: 18px; }
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Container */
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #000000;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 3px solid #f97316;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(249, 115, 22, 0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .logo {
+            font-size: 36px;
+            font-weight: 900;
+            color: #f97316;
+            margin-bottom: 8px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(249, 115, 22, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header-subtitle {
+            color: #9ca3af;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Success Banner */
+        .success-banner {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            padding: 35px 30px;
+            text-align: center;
+            color: #000000;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .success-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.1; }
+        }
+        
+        .success-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .success-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(0, 0, 0, 0.15);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        
+        .success-title {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        
+        .success-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+        
+        /* Main Content */
+        .content {
+            padding: 40px 30px;
+            background: linear-gradient(180deg, #111111 0%, #0a0a0a 100%);
+        }
+        
+        .greeting {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        
+        .intro-text {
+            color: #d1d5db;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        
+        .order-header {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            border: 2px solid #f97316;
+            border-radius: 16px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .order-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.1), transparent);
+            animation: slide 2s infinite;
+        }
+        
+        @keyframes slide {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .order-number {
+            color: #f97316;
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .order-date {
+            color: #9ca3af;
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Order Items */
+        .items-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border: 1px solid #374151;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section-title {
+            color: #f97316;
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .section-icon {
+            margin-right: 12px;
+            font-size: 20px;
+        }
+        
+        .order-item {
+            display: flex;
+            align-items: center;
+            padding: 25px 0;
+            border-bottom: 1px solid #374151;
+            transition: all 0.3s ease;
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .order-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .item-image {
+            width: 90px;
+            height: 90px;
+            border-radius: 16px;
+            margin-right: 20px;
+            object-fit: cover;
+            border: 2px solid #374151;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .item-details {
+            flex: 1;
+        }
+        
+        .item-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        
+        .item-specs {
+            color: #9ca3af;
+            font-size: 14px;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .item-status {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #000000;
+            padding: 6px 14px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .item-price {
+            text-align: right;
+            color: #f97316;
+            font-weight: 900;
+            font-size: 20px;
+            text-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
+        }
+        
+        .item-unit-price {
+            color: #9ca3af;
+            font-size: 14px;
+            font-weight: 400;
+            margin-top: 4px;
+        }
+        
+        /* Order Total */
+        .order-total {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border: 2px solid #f97316;
+            border-radius: 16px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .total-amount {
+            font-size: 32px;
+            font-weight: 900;
+            color: #f97316;
+            margin-bottom: 8px;
+            text-shadow: 0 0 15px rgba(249, 115, 22, 0.4);
+        }
+        
+        .total-label {
+            color: #9ca3af;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .total-breakdown {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #374151;
+            font-size: 14px;
+            color: #9ca3af;
+        }
+        
+        /* Call to Action */
+        .cta-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: #000000;
+            text-decoration: none;
+            padding: 18px 36px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 16px;
+            margin: 10px;
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.5);
+        }
+        
+        .cta-secondary {
+            display: inline-block;
+            background: transparent;
+            color: #f97316;
+            text-decoration: none;
+            padding: 18px 36px;
+            border: 2px solid #f97316;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            margin: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-secondary:hover {
+            background-color: rgba(249, 115, 22, 0.1);
+        }
+        
+        /* Timeline */
+        .timeline {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .timeline-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: #000000;
+            font-weight: 900;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+        }
+        
+        .timeline-content h4 {
+            color: #ffffff;
+            margin-bottom: 5px;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .timeline-content p {
+            color: #9ca3af;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .delivery-highlight {
+            background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .delivery-date {
+            font-size: 24px;
+            font-weight: 900;
+            color: #10b981;
+            margin-bottom: 5px;
+        }
+        
+        .delivery-label {
+            color: #d1fae5;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 40px 30px;
+            text-align: center;
+            border-top: 1px solid #374151;
+        }
+        
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #f97316;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(249, 115, 22, 0.3);
+        }
+        
+        .social-links {
+            margin: 25px 0;
+        }
+        
+        .social-link {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+            border-radius: 50%;
+            margin: 0 8px;
+            text-decoration: none;
+            color: #f97316;
+            line-height: 45px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: #000000;
+            transform: translateY(-3px);
+        }
+        
+        .footer-text {
+            color: #9ca3af;
+            font-size: 14px;
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        
+        .unsubscribe {
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 12px;
+            transition: color 0.3s ease;
+        }
+        
+        .unsubscribe:hover {
+            color: #f97316;
+        }
+        
+        /* Mobile Responsive */
+        @media only screen and (max-width: 600px) {
+            .email-container {
+                width: 100% !important;
+            }
+            
+            .header, .content, .footer {
+                padding: 25px 20px !important;
+            }
+            
+            .success-banner {
+                padding: 25px 20px !important;
+            }
+            
+            .logo {
+                font-size: 28px !important;
+            }
+            
+            .success-title {
+                font-size: 26px !important;
+            }
+            
+            .items-section, .timeline {
+                padding: 20px !important;
+            }
+            
+            .order-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 0 !important;
+            }
+            
+            .item-image {
+                margin-right: 0 !important;
+                margin-bottom: 15px;
+            }
+            
+            .item-price {
+                text-align: center !important;
+                margin-top: 15px;
+            }
+            
+            .cta-button, .cta-secondary {
+                display: block !important;
+                margin: 15px 0 !important;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .timeline-icon {
+                margin-right: 0 !important;
+                margin-bottom: 15px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="email-container">
+        <!-- Header -->
         <div class="header">
-            <h1>Order Confirmation</h1>
+            <div class="logo">DXRKICE</div>
+            <p class="header-subtitle">Dark Luxury Fashion</p>
         </div>
         
-        <p>Hi {{ user.first_name }},</p>
-        
-        <p>Thank you for your order! Your order <strong>#{{ order.order_number }}</strong> has been confirmed.</p>
-        
-        <div class="order-details">
-            <h3>Order Details</h3>
-            {% for item in order.items.all %}
-            <div class="item">
-                <strong>{{ item.product.name }}</strong><br>
-                {% if item.variant %}Size: {{ item.variant.size }}<br>{% endif %}
-                Quantity: {{ item.quantity }}<br>
-                Price: ${{ item.total_price }}
+        <!-- Success Banner -->
+        <div class="success-banner">
+            <div class="success-content">
+                <div class="success-icon">🔥</div>
+                <h1 class="success-title">Order Locked In!</h1>
+                <p class="success-subtitle">Your dark luxury pieces are being crafted</p>
             </div>
-            {% endfor %}
+        </div>
+        
+        <!-- Main Content -->
+        <div class="content">
+            <p class="greeting">Yo {{ user.first_name }},</p>
             
-            <div class="total">
-                <p>Subtotal: ${{ order.subtotal }}</p>
-                <p>Tax: ${{ order.tax }}</p>
-                <p>Shipping: ${{ order.shipping }}</p>
-                <p>Total: ${{ order.total }}</p>
+            <p class="intro-text">
+                🖤 Your order is confirmed and our craftsmen are already working on your exclusive pieces. 
+                Get ready to elevate your style to the next level.
+            </p>
+            
+            <!-- Order Header -->
+            <div class="order-header">
+                <h2 class="order-number">#{{ order.order_number }}</h2>
+                <p class="order-date">{{ order.created_at|date:"F d, Y" }}</p>
             </div>
+            
+            <!-- Order Items -->
+            <div class="items-section">
+                <h3 class="section-title">
+                    <span class="section-icon">🔥</span>
+                    Your Items
+                </h3>
+                
+                {% for item in order.items.all %}
+                <div class="order-item">
+                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="item-image">
+                    <div class="item-details">
+                        <div class="item-name">{{ item.product.name }}</div>
+                        <div class="item-specs">
+                            {% if item.variant %}{{ item.variant.size }}{% if item.variant.color %} • {{ item.variant.color }}{% endif %} • {% endif %}Qty: {{ item.quantity }}
+                        </div>
+                        <div class="item-status">Crafting</div>
+                    </div>
+                    <div class="item-price">
+                        ${{ item.total_price }}
+                        <div class="item-unit-price">${{ item.unit_price }} each</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Order Total -->
+            <div class="order-total">
+                <div class="total-amount">${{ order.total }}</div>
+                <div class="total-label">Total Paid</div>
+                <div class="total-breakdown">
+                    Subtotal: ${{ order.subtotal }} • Tax: ${{ order.tax }} • Shipping: ${{ order.shipping }}
+                </div>
+            </div>
+            
+            <!-- Delivery Highlight -->
+            <div class="delivery-highlight">
+                <div class="delivery-date">{{ order.estimated_delivery|date:"M d, Y" }}</div>
+                <div class="delivery-label">Expected Delivery</div>
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <a href="#" class="cta-button">Track Order</a>
+                <a href="#" class="cta-secondary">View Details</a>
+            </div>
+            
+            <!-- Timeline -->
+            <div class="timeline">
+                <h3 class="section-title">
+                    <span class="section-icon">⚡</span>
+                    What's Next
+                </h3>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">1</div>
+                    <div class="timeline-content">
+                        <h4>Design Lock</h4>
+                        <p>Specs confirmed, production queue (1-2 days)</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">2</div>
+                    <div class="timeline-content">
+                        <h4>Crafting</h4>
+                        <p>Hand-crafted by our artisans (7-14 days)</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">3</div>
+                    <div class="timeline-content">
+                        <h4>Quality & Ship</h4>
+                        <p>Final check and express delivery (2-3 days)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #1f2937 0%, #374151 100%); border-radius: 16px; padding: 25px; margin: 30px 0; text-align: center;">
+                <h3 style="color: #f97316; margin-bottom: 15px; font-weight: 800;">🔥 DXRKICE Exclusive</h3>
+                <p style="color: #d1d5db; margin-bottom: 20px;">
+                    Follow us for exclusive drops, behind-the-scenes crafting content, and early access to limited collections.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link">📘</a>
+                    <a href="#" class="social-link">📷</a>
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">📌</a>
+                </div>
+            </div>
+            
+            <p style="color: #d1d5db; text-align: center; margin: 30px 0; font-size: 16px;">
+                Questions? Hit us up anytime. We're here 24/7.
+            </p>
         </div>
         
-        <p>We'll send you updates as your custom items are manufactured and shipped.</p>
-        
-        <p>Estimated delivery: {{ order.estimated_delivery|date:"F d, Y" }}</p>
-        
-        <p>Thank you for choosing FashionAI!</p>
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-logo">DXRKICE</div>
+            <p class="footer-text">Where darkness meets luxury</p>
+            
+            <div class="social-links">
+                <a href="#" class="social-link">📘</a>
+                <a href="#" class="social-link">📷</a>
+                <a href="#" class="social-link">🐦</a>
+                <a href="#" class="social-link">📌</a>
+                <a href="#" class="social-link">💼</a>
+            </div>
+            
+            <p class="footer-text">
+                DXRKICE Inc. | Dark Luxury Fashion<br>
+                © 2024 DXRKICE. All rights reserved.
+            </p>
+            
+            <p style="margin-top: 20px;">
+                <a href="#" class="unsubscribe">Preferences</a> | 
+                <a href="#" class="unsubscribe">Unsubscribe</a>
+            </p>
+        </div>
     </div>
 </body>
 </html>

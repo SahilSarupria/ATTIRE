@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.password_validation import validate_password
 import bcrypt
 import jwt
+from .models import Address
 from django.conf import settings
 from datetime import datetime, timedelta
 from rest_framework_simplejwt.serializers import TokenRefreshSerializer
@@ -53,7 +54,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data.pop('password_confirm')
         password = validated_data.pop('password')
-        
+        validated_data['role'] = 'user'
         user = User.objects.create(**validated_data)
         user.set_password(password)
         user.save()
@@ -84,6 +85,24 @@ class UserLoginSerializer(serializers.Serializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'email', 'username', 'first_name', 'last_name', 'avatar', 'phone', 'created_at')
+        fields = ('id', 'email', 'username', 'first_name', 'last_name', 'avatar', 'phone', 'created_at', 'is_staff', 'role')
         read_only_fields = ('id', 'created_at')
 
+
+class AddressSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Address
+        fields = [
+            'id', 'type', 'first_name', 'last_name', 'company',
+            'address1', 'address2', 'city', 'state', 'zip_code',
+            'country', 'is_default', 'created_at'
+        ]
+        read_only_fields = ['id', 'created_at']
+    
+    def validate(self, data):
+        # Ensure required fields are present
+        required_fields = ['first_name', 'last_name', 'address1', 'city', 'state', 'zip_code', 'country']
+        for field in required_fields:
+            if not data.get(field):
+                raise serializers.ValidationError(f'{field} is required')
+        return data

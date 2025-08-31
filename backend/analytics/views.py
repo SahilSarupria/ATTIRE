@@ -84,3 +84,113 @@ def track_product_view(request):
         return Response({'success': True})
     except Product.DoesNotExist:
         return Response({'error': 'Product not found'}, status=404)
+
+# Enhanced Admin Analytics Endpoints
+@api_view(['GET'])
+@permission_classes([IsAdminUser])
+def admin_analytics_overview(request):
+    """Get comprehensive analytics overview"""
+    from django.contrib.auth import get_user_model
+    
+    User = get_user_model()
+    
+    # Date range
+    end_date = timezone.now().date()
+    start_date = end_date - timedelta(days=30)
+    
+    # Revenue analytics
+    revenue_data = []
+    for i in range(30):
+        date = start_date + timedelta(days=i)
+        daily_revenue = Order.objects.filter(
+            created_at__date=date,
+            payment_status='paid'
+        ).aggregate(Sum('total'))['total__sum'] or 0
+        revenue_data.append({
+            'date': date.isoformat(),
+            'revenue': float(daily_revenue)
+        })
+    
+    # Order analytics
+    order_data = []
+    for i in range(30):
+        date = start_date + timedelta(days=i)
+        daily_orders = Order.objects.filter(created_at__date=date).count()
+        order_data.append({
+            'date': date.isoformat(),
+            'orders': daily_orders
+        })
+    
+    # Category performance
+    category_stats = {}
+    for category, _ in Product.CATEGORY_CHOICES:
+        category_revenue = OrderItem.objects.filter(
+            product__category=category,
+            order__payment_status='paid',
+            order__created_at__date__range=[start_date, end_date]
+        ).aggregate(Sum('total_price'))['total_price__sum'] or 0
+        
+        category_stats[category] = {
+            'revenue': float(category_revenue),
+            'products_sold': OrderItem.objects.filter(
+                product__category=category,
+                order__payment_status='paid',
+                order__created_at__date__range=[start_date, end_date]
+            ).aggregate(Sum('quantity'))['quantity__sum'] or 0
+        }
+    
+    # Top customers
+    top_customers = Order.objects.filter(
+        payment_status='paid',
+        created_at__date__range=[start_date, end_date]
+    ).values('user__email', 'user__first_name', 'user__last_name').annotate(
+        total_spent=Sum('total'),
+        order_count=Count('id')
+    ).order_by('-total_spent')[:10]
+    
+    return Response({
+        'revenue_trend': revenue_data,
+        'order_trend': order_data,
+        'category_performance': category_stats,
+        'top_customers': list(top_customers),
+        'total_revenue': sum(item['revenue'] for item in revenue_data),
+        'total_orders': sum(item['orders'] for item in order_data),
+        'average_order_value': sum(item['revenue'] for item in revenue_data) / max(sum(item['orders'] for item in order_data), 1)
+    })
+
+@api_view(['GET'])
+@permission_classes([IsAdminUser])
+def admin_product_performance(request):
+    """Get product performance analytics"""
+    end_date = timezone.now().date()
+    start_date = end_date - timedelta(days=30)
+    
+    # Best selling products
+    best_sellers = OrderItem.objects.filter(
+        order__payment_status='paid',
+        order__created_at__date__range=[start_date, end_date]
+    ).values('product__name', 'product__id').annotate(
+        total_sold=Sum('quantity'),
+        total_revenue=Sum('total_price')
+    ).order_by('-total_sold')[:10]
+    
+    # Most viewed products
+    most_viewed = ProductView.objects.filter(
+        created_at__date__range=[start_date, end_date]
+    ).values('product__name', 'product__id').annotate(
+        view_count=Count('id')
+    ).order_by('-view_count')[:10]
+    
+    # Low stock products
+    low_stock = Product.objects.filter(
+        is_active=True
+        # Add stock field filtering when available
+    )[:10]
+    
+    return Response({
+        'best_sellers': list(best_sellers),
+        'most_viewed': list(most_viewed),
+        'conversion_rate': 2.5,  # Calculate based on views vs purchases
+        'total_products': Product.objects.filter(is_active=True).count(),
+        'out_of_stock': 0,  # Calculate when stock field is available
+    })

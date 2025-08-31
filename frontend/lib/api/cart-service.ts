@@ -13,7 +13,7 @@ export type CartItemType = {
 }
 
 // API base URL - should be set in your environment variables
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
+const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 // Helper function to get auth token
 const getToken = (): string | null => {

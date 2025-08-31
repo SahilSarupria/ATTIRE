@@ -1,31 +1,58 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import type { User } from '@/types'; // adjust path to your actual types file
+import { usePathname, useRouter } from 'next/navigation';
+import type { User } from '@/types';
 import { authService } from '@/lib/api-auth';
-import { ReactNode, useState, useEffect, } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { AuthProvider } from '@/app/context/AuthContext';
 
-export default function AuthProviderWrapper({ children, initialUser }: { children: ReactNode; initialUser: User | null;  }) {
-  const [user, setUser] = useState<User | null>(null);
+export default function AuthProviderWrapper({
+  children,
+  initialUser,
+}: {
+  children: ReactNode;
+  initialUser: User | null;
+}) {
+  const [user, setUser] = useState<User | null>(initialUser);
   const [loading, setLoading] = useState(true);
+
   const pathname = usePathname();
-    
+  const router = useRouter();
+
+  const protectedRoutes = ['/profile', '/create'];
+  const authPageRoutes = ['/login'];
+
+  const isProtected = protectedRoutes.some((path) => pathname.startsWith(path));
+  const isAuthPage = authPageRoutes.some((path) => pathname.startsWith(path));
+
   useEffect(() => {
-    if (!initialUser) {
+    const fetchUser = async () => {
       setLoading(true);
-      authService.getProfile()
-        .then(setUser)
-        .catch(() => setUser(null))
-        .finally(() => setLoading(false));
-    }
-  }, [initialUser]);
+      try {
+        const currentUser = await authService.getProfile();
+        setUser(currentUser);
 
-  if (loading) return null; // or loading spinner
+        if (isAuthPage && currentUser) {
+          // If already logged in and trying to access /login, redirect away
+          router.replace('/');
+        }
+      } catch {
+        setUser(null);
+        if (isProtected) {
+          // Not logged in and accessing a protected page
+          router.replace(`/login?callback=${encodeURIComponent(pathname)}`);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const authRequiredPaths = [ '/profile', '/create', '/login']; // customize your protected routes
+    fetchUser();
+  }, [isProtected, isAuthPage, pathname]);
 
-  const requireAuth = authRequiredPaths.some(path => pathname.startsWith(path));
+  if (loading) return null;
 
-  return <AuthProvider requireAuth={requireAuth}>{children}</AuthProvider>;
+  if ((isProtected && !user) || (isAuthPage && user)) return null;
+
+  return <AuthProvider requireAuth={isProtected}>{children}</AuthProvider>;
 }

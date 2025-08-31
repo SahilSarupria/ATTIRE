@@ -1,5 +1,4 @@
 import type { NextRequest } from "next/server"
-import { ServerClothingAnalyzer } from "@/lib/server-clothing-analyzer"
 
 export async function POST(req: NextRequest) {
   try {
@@ -9,19 +8,51 @@ export async function POST(req: NextRequest) {
       return Response.json({ error: "No image URL provided" }, { status: 400 })
     }
 
-    // Initialize our server-side analyzer
-    const analyzer = new ServerClothingAnalyzer()
+    // Call our Python segmentation service
+    const response = await fetch("http://localhost:5000/segment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        imageUrl: imageUrl,
+        prompt: prompt || "",
+      }),
+    })
 
-    // Analyze the clothing based on prompt and context
-    const analysis = await analyzer.analyzeImage(imageUrl, prompt || "")
+    if (!response.ok) {
+      throw new Error(`Segmentation service error: ${response.statusText}`)
+    }
 
-    // Return the detected elements
+    const data = await response.json()
+
+    // Transform the data to match our frontend expectations
+    const elements = data.segmentedItems.map((item: any) => ({
+      id: item.id,
+      name: item.name,
+      type: item.category,
+      price: item.price,
+      fabric: "Cotton Blend", // Default fabric
+      color: "Multi-Color", // Default color
+      coordinates: {
+        x: item.bbox[0],
+        y: item.bbox[1],
+        width: item.bbox[2],
+        height: item.bbox[3],
+      },
+      polygon: item.polygon,
+      confidence: item.confidence,
+      category: item.category,
+      bbox: item.bbox,
+      mask_base64: item.mask_base64,
+    }))
+
     return Response.json({
-      elements: analysis.elements,
+      elements: elements,
       metadata: {
-        totalItems: analysis.totalItems,
-        dominantColors: analysis.dominantColors,
-        complexity: analysis.estimatedComplexity,
+        totalItems: data.totalItems,
+        dominantColors: ["mixed"],
+        complexity: "moderate",
       },
     })
   } catch (error) {
@@ -33,7 +64,7 @@ export async function POST(req: NextRequest) {
         {
           id: "fallback_item",
           name: "Custom Design",
-          type: "top",
+          type: "shirt",
           price: 89.99,
           fabric: "Cotton Blend",
           color: "Multi-Color",

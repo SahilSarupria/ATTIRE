@@ -1,24 +1,21 @@
 "use client"
 
+import type React from "react"
+
 import { useState, useMemo, useEffect } from "react"
 import { useParams, useRouter, usePathname } from "next/navigation"
-
-import { authService } from '@/lib/api-auth';
-import type { User } from '@/types.ts';
+import { useCart } from "@/app/context/CartContext"
+import { fetchProductsArray, type Product } from "@/lib/ProductApi"
+import { authService } from "@/lib/api-auth"
+import type { User } from "@/types"
 import Link from "next/link"
 import SlidingCart from "@/components/sliding-cart"
 
 import { useToast } from "@/hooks/use-toast"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { motion, AnimatePresence, useAnimationControls } from "framer-motion"
 import {
+  Bell,
   Search,
   Grid3X3,
   List,
@@ -29,6 +26,7 @@ import {
   User2,
   Star,
   SlidersHorizontal,
+  Loader2,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -45,784 +43,22 @@ type UserType = {
   isLoggedIn: boolean
 }
 
-// Expanded product data with many more products
-const allProducts = [
-  // T-Shirts (12 products)
-  {
-    id: 1,
-    name: "Urban Minimalist Tee",
-    category: "tshirt",
-    subcategory: "basic-tee",
-    price: 49.99,
-    originalPrice: 59.99,
-    image: "/tshirt.jpg",
-    colors: ["black", "white", "gray"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.5,
-    reviews: 127,
-    isNew: true,
-    onSale: true,
-  },
-  {
-    id: 2,
-    name: "Vintage Band Tee",
-    category: "tshirt",
-    subcategory: "graphic-tee",
-    price: 39.99,
-    originalPrice: 49.99,
-    image: "/tshirt.jpg",
-    colors: ["black", "gray"],
-    sizes: ["S", "M", "L"],
-    rating: 4.3,
-    reviews: 89,
-    isNew: false,
-    onSale: true,
-  },
-  {
-    id: 3,
-    name: "Premium Cotton Tee",
-    category: "tshirt",
-    subcategory: "premium-tee",
-    price: 59.99,
-    originalPrice: 59.99,
-    image: "/tshirt.jpg",
-    colors: ["white", "navy", "olive"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.7,
-    reviews: 156,
-    isNew: true,
-    onSale: false,
-  },
-  {
-    id: 16,
-    name: "Retro Graphic Tee",
-    category: "tshirt",
-    subcategory: "graphic-tee",
-    price: 44.99,
-    originalPrice: 54.99,
-    image: "/tshirt.jpg",
-    colors: ["black", "white", "red"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.4,
-    reviews: 203,
-    isNew: false,
-    onSale: true,
-  },
-  {
-    id: 17,
-    name: "Organic Hemp Tee",
-    category: "tshirt",
-    subcategory: "premium-tee",
-    price: 69.99,
-    originalPrice: 69.99,
-    image: "/tshirt.jpg",
-    colors: ["sage", "cream", "gray"],
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    rating: 4.8,
-    reviews: 145,
-    isNew: true,
-    onSale: false,
-  },
-  {
-    id: 18,
-    name: "Pocket Tee Classic",
-    category: "tshirt",
-    subcategory: "basic-tee",
-    price: 34.99,
-    originalPrice: 39.99,
-    image: "/tshirt.jpg",
-    colors: ["navy", "white", "gray"],
-    sizes: ["S", "M", "L"],
-    rating: 4.2,
-    reviews: 178,
-    isNew: false,
-    onSale: true,
-  },
-  {
-    id: 19,
-    name: "Oversized Drop Shoulder Tee",
-    category: "tshirt",
-    subcategory: "basic-tee",
-    price: 54.99,
-    originalPrice: 54.99,
-    image: "/tshirt.jpg",
-    colors: ["black", "beige", "pink"],
-    sizes: ["M", "L", "XL"],
-    rating: 4.6,
-    reviews: 234,
-    isNew: true,
-    onSale: false,
-  },
-  {
-    id: 20,
-    name: "Tie-Dye Festival Tee",
-    category: "tshirt",
-    subcategory: "graphic-tee",
-    price: 42.99,
-    originalPrice: 52.99,
-    image: "/tshirt.jpg",
-    colors: ["blue", "pink", "green"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.1,
-    reviews: 167,
-    isNew: false,
-    onSale: true,
-  },
-  {
-    id: 21,
-    name: "Bamboo Fiber Tee",
-    category: "tshirt",
-    subcategory: "premium-tee",
-    price: 64.99,
-    originalPrice: 64.99,
-    image: "/tshirt.jpg",
-    colors: ["white", "charcoal", "sage"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.7,
-    reviews: 189,
-    isNew: true,
-    onSale: false,
-  },
-  {
-    id: 22,
-    name: "Striped Long Sleeve Tee",
-    category: "tshirt",
-    subcategory: "basic-tee",
-    price: 47.99,
-    originalPrice: 57.99,
-    image: "/tshirt.jpg",
-    colors: ["navy", "black", "red"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.3,
-    reviews: 156,
-    isNew: false,
-    onSale: true,
-  },
-  {
-    id: 23,
-    name: "Henley Neck Tee",
-    category: "tshirt",
-    subcategory: "basic-tee",
-    price: 52.99,
-    originalPrice: 52.99,
-    image: "/tshirt.jpg",
-    colors: ["gray", "navy", "olive"],
-    sizes: ["M", "L", "XL"],
-    rating: 4.5,
-    reviews: 198,
-    isNew: true,
-    onSale: false,
-  },
-  {
-    id: 24,
-    name: "Vintage Wash Tee",
-    category: "tshirt",
-    subcategory: "graphic-tee",
-    price: 41.99,
-    originalPrice: 49.99,
-    image: "/tshirt.jpg",
-    colors: ["black", "gray", "brown"],
-    sizes: ["S", "M", "L"],
-    rating: 4.4,
-    reviews: 134,
-    isNew: false,
-    onSale: true,
-  },
+// Extended product type for UI compatibility
+interface UIProduct extends Product {
+  numericId: number
+  originalPrice: number
+  image: string
+  colors: string[]
+  sizes: string[]
+  rating: number
+  reviews: number
+  isNew: boolean
+  onSale: boolean
+  price: number
+  subcategory: string
+}
 
-  // Shirts (10 products)
-  {
-    id: 4,
-    name: "Classic Oxford Shirt",
-    category: "shirt",
-    subcategory: "dress-shirt",
-    price: 79.99,
-    originalPrice: 89.99,
-    image: "/shirt.jpg",
-    colors: ["white", "blue", "pink"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.6,
-    reviews: 203,
-    isNew: false,
-    onSale: true,
-  },
-  {
-    id: 5,
-    name: "Casual Linen Shirt",
-    category: "shirt",
-    subcategory: "casual-shirt",
-    price: 69.99,
-    originalPrice: 79.99,
-    image: "/shirt.jpg",
-    colors: ["white", "beige", "blue"],
-    sizes: ["M", "L", "XL", "XXL"],
-    rating: 4.4,
-    reviews: 134,
-    isNew: true,
-    onSale: true,
-  },
-  {
-    id: 6,
-    name: "Flannel Check Shirt",
-    category: "shirt",
-    subcategory: "flannel",
-    price: 64.99,
-    originalPrice: 64.99,
-    image: "/shirt.jpg",
-    colors: ["red", "blue", "green"],
-    sizes: ["S", "M", "L"],
-    rating: 4.5,
-    reviews: 98,
-    isNew: false,
-    onSale: false,
-  },
-  {
-    id: 25,
-    name: "Chambray Work Shirt",
-    category: "shirt",
-    subcategory: "casual-shirt",
-    price: 74.99,
-    originalPrice: 84.99,
-    image: "/shirt.jpg",
-    colors: ["blue", "gray", "black"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.7,
-    reviews: 167,
-    isNew: true,
-    onSale: true,
-  },
-  {
-    id: 26,
-    name: "Poplin Dress Shirt",
-    category: "shirt",
-    subcategory: "dress-shirt",
-    price: 89.99,
-    originalPrice: 89.99,
-    image: "/shirt.jpg",
-    colors: ["white", "blue", "gray"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.8,
-    reviews: 245,
-    isNew: false,
-    onSale: false,
-  },
-  {
-    id: 27,
-    name: "Corduroy Overshirt",
-    category: "shirt",
-    subcategory: "casual-shirt",
-    price: 94.99,
-    originalPrice: 104.99,
-    image: "/shirt.jpg",
-    colors: ["brown", "navy", "olive"],
-    sizes: ["M", "L", "XL"],
-    rating: 4.6,
-    reviews: 189,
-    isNew: true,
-    onSale: true,
-  },
-  {
-    id: 28,
-    name: "Denim Work Shirt",
-    category: "shirt",
-    subcategory: "casual-shirt",
-    price: 79.99,
-    originalPrice: 79.99,
-    image: "/shirt.jpg",
-    colors: ["blue", "black"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.5,
-    reviews: 156,
-    isNew: false,
-    onSale: false,
-  },
-  {
-    id: 29,
-    name: "Plaid Flannel Shirt",
-    category: "shirt",
-    subcategory: "flannel",
-    price: 67.99,
-    originalPrice: 77.99,
-    image: "/shirt.jpg",
-    colors: ["red", "green", "blue"],
-    sizes: ["S", "M", "L"],
-    rating: 4.3,
-    reviews: 134,
-    isNew: false,
-    onSale: true,
-  },
-  {
-    id: 30,
-    name: "Cuban Collar Shirt",
-    category: "shirt",
-    subcategory: "casual-shirt",
-    price: 72.99,
-    originalPrice: 72.99,
-    image: "/shirt.jpg",
-    colors: ["white", "navy", "sage"],
-    sizes: ["M", "L", "XL"],
-    rating: 4.4,
-    reviews: 178,
-    isNew: true,
-    onSale: false,
-  },
-  {
-    id: 31,
-    name: "Twill Button Down",
-    category: "shirt",
-    subcategory: "dress-shirt",
-    price: 84.99,
-    originalPrice: 94.99,
-    image: "/shirt.jpg",
-    colors: ["white", "blue", "pink"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.7,
-    reviews: 203,
-    isNew: false,
-    onSale: true,
-  },
-
-  // Hoodies (8 products)
-  {
-    id: 7,
-    name: "Essential Pullover Hoodie",
-    category: "hoodie",
-    subcategory: "pullover",
-    price: 89.99,
-    originalPrice: 99.99,
-    image: "/hoodie.jpg",
-    colors: ["black", "gray", "navy"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.8,
-    reviews: 245,
-    isNew: true,
-    onSale: true,
-  },
-  {
-    id: 8,
-    name: "Zip-Up Hoodie",
-    category: "hoodie",
-    subcategory: "zip-up",
-    price: 94.99,
-    originalPrice: 94.99,
-    image: "/hoodie.jpg",
-    colors: ["black", "charcoal"],
-    sizes: ["M", "L", "XL"],
-    rating: 4.6,
-    reviews: 167,
-    isNew: false,
-    onSale: false,
-  },
-  {
-    id: 9,
-    name: "Oversized Hoodie",
-    category: "hoodie",
-    subcategory: "oversized",
-    price: 99.99,
-    originalPrice: 109.99,
-    image: "/hoodie.jpg",
-    colors: ["cream", "pink", "sage"],
-    sizes: ["S", "M", "L"],
-    rating: 4.7,
-    reviews: 189,
-    isNew: true,
-    onSale: true,
-  },
-  {
-    id: 32,
-    name: "Heavyweight Pullover",
-    category: "hoodie",
-    subcategory: "pullover",
-    price: 104.99,
-    originalPrice: 114.99,
-    image: "/hoodie.jpg",
-    colors: ["black", "navy", "olive"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.9,
-    reviews: 234,
-    isNew: true,
-    onSale: true,
-  },
-  {
-    id: 33,
-    name: "Cropped Zip Hoodie",
-    category: "hoodie",
-    subcategory: "zip-up",
-    price: 87.99,
-    originalPrice: 87.99,
-    image: "/hoodie.jpg",
-    colors: ["gray", "pink", "black"],
-    sizes: ["S", "M", "L"],
-    rating: 4.4,
-    reviews: 156,
-    isNew: false,
-    onSale: false,
-  },
-  {
-    id: 34,
-    name: "Vintage Wash Hoodie",
-    category: "hoodie",
-    subcategory: "oversized",
-    price: 92.99,
-    originalPrice: 102.99,
-    image: "/hoodie.jpg",
-    colors: ["charcoal", "brown", "sage"],
-    sizes: ["M", "L", "XL"],
-    rating: 4.5,
-    reviews: 178,
-    isNew: false,
-    onSale: true,
-  },
-  {
-    id: 35,
-    name: "Tech Fleece Hoodie",
-    category: "hoodie",
-    subcategory: "pullover",
-    price: 119.99,
-    originalPrice: 119.99,
-    image: "/hoodie.jpg",
-    colors: ["black", "gray", "navy"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.8,
-    reviews: 267,
-    isNew: true,
-    onSale: false,
-  },
-  {
-    id: 36,
-    name: "Sherpa Lined Hoodie",
-    category: "hoodie",
-    subcategory: "zip-up",
-    price: 109.99,
-    originalPrice: 119.99,
-    image: "/hoodie.jpg",
-    colors: ["brown", "black", "navy"],
-    sizes: ["M", "L", "XL"],
-    rating: 4.7,
-    reviews: 198,
-    isNew: false,
-    onSale: true,
-  },
-
-  // Jackets (9 products)
-  {
-    id: 10,
-    name: "Denim Jacket",
-    category: "jacket",
-    subcategory: "denim",
-    price: 129.99,
-    originalPrice: 149.99,
-    image: "/jacket.jpg",
-    colors: ["blue", "black"],
-    sizes: ["M", "L", "XL"],
-    rating: 4.5,
-    reviews: 112,
-    isNew: false,
-    onSale: true,
-  },
-  {
-    id: 11,
-    name: "Bomber Jacket",
-    category: "jacket",
-    subcategory: "bomber",
-    price: 159.99,
-    originalPrice: 159.99,
-    image: "/jacket.jpg",
-    colors: ["black", "olive", "navy"],
-    sizes: ["S", "M", "L"],
-    rating: 4.8,
-    reviews: 87,
-    isNew: true,
-    onSale: false,
-  },
-  {
-    id: 12,
-    name: "Leather Jacket",
-    category: "jacket",
-    subcategory: "leather",
-    price: 299.99,
-    originalPrice: 349.99,
-    image: "/jacket.jpg",
-    colors: ["black", "brown"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.9,
-    reviews: 76,
-    isNew: false,
-    onSale: true,
-  },
-  {
-    id: 37,
-    name: "Varsity Jacket",
-    category: "jacket",
-    subcategory: "bomber",
-    price: 174.99,
-    originalPrice: 194.99,
-    image: "/jacket.jpg",
-    colors: ["navy", "black", "red"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.6,
-    reviews: 145,
-    isNew: true,
-    onSale: true,
-  },
-  {
-    id: 38,
-    name: "Trucker Jacket",
-    category: "jacket",
-    subcategory: "denim",
-    price: 119.99,
-    originalPrice: 129.99,
-    image: "/jacket.jpg",
-    colors: ["blue", "black", "gray"],
-    sizes: ["M", "L", "XL"],
-    rating: 4.4,
-    reviews: 167,
-    isNew: false,
-    onSale: true,
-  },
-  {
-    id: 39,
-    name: "Moto Leather Jacket",
-    category: "jacket",
-    subcategory: "leather",
-    price: 349.99,
-    originalPrice: 349.99,
-    image: "/jacket.jpg",
-    colors: ["black", "brown"],
-    sizes: ["S", "M", "L"],
-    rating: 4.9,
-    reviews: 89,
-    isNew: true,
-    onSale: false,
-  },
-  {
-    id: 40,
-    name: "Coach Jacket",
-    category: "jacket",
-    subcategory: "bomber",
-    price: 144.99,
-    originalPrice: 164.99,
-    image: "/jacket.jpg",
-    colors: ["black", "navy", "olive"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.5,
-    reviews: 134,
-    isNew: false,
-    onSale: true,
-  },
-  {
-    id: 41,
-    name: "Sherpa Denim Jacket",
-    category: "jacket",
-    subcategory: "denim",
-    price: 139.99,
-    originalPrice: 139.99,
-    image: "/jacket.jpg",
-    colors: ["blue", "black"],
-    sizes: ["M", "L", "XL"],
-    rating: 4.7,
-    reviews: 178,
-    isNew: true,
-    onSale: false,
-  },
-  {
-    id: 42,
-    name: "Suede Bomber",
-    category: "jacket",
-    subcategory: "bomber",
-    price: 189.99,
-    originalPrice: 209.99,
-    image: "/jacket.jpg",
-    colors: ["brown", "navy", "olive"],
-    sizes: ["S", "M", "L"],
-    rating: 4.8,
-    reviews: 156,
-    isNew: false,
-    onSale: true,
-  },
-
-  // Pants (12 products)
-  {
-    id: 13,
-    name: "Slim Fit Jeans",
-    category: "pant",
-    subcategory: "jeans",
-    price: 89.99,
-    originalPrice: 99.99,
-    image: "/pant.jpg",
-    colors: ["blue", "black", "gray"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.4,
-    reviews: 234,
-    isNew: false,
-    onSale: true,
-  },
-  {
-    id: 14,
-    name: "Chino Pants",
-    category: "pant",
-    subcategory: "chinos",
-    price: 79.99,
-    originalPrice: 89.99,
-    image: "/pant.jpg",
-    colors: ["khaki", "navy", "black"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.6,
-    reviews: 178,
-    isNew: true,
-    onSale: true,
-  },
-  {
-    id: 15,
-    name: "Cargo Pants",
-    category: "pant",
-    subcategory: "cargo",
-    price: 99.99,
-    originalPrice: 109.99,
-    image: "/pant.jpg",
-    colors: ["olive", "black", "khaki"],
-    sizes: ["M", "L", "XL"],
-    rating: 4.3,
-    reviews: 145,
-    isNew: false,
-    onSale: true,
-  },
-  {
-    id: 43,
-    name: "Straight Leg Jeans",
-    category: "pant",
-    subcategory: "jeans",
-    price: 94.99,
-    originalPrice: 104.99,
-    image: "/pant.jpg",
-    colors: ["blue", "black", "gray"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.5,
-    reviews: 189,
-    isNew: true,
-    onSale: true,
-  },
-  {
-    id: 44,
-    name: "Wide Leg Chinos",
-    category: "pant",
-    subcategory: "chinos",
-    price: 84.99,
-    originalPrice: 84.99,
-    image: "/pant.jpg",
-    colors: ["beige", "navy", "olive"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.4,
-    reviews: 167,
-    isNew: false,
-    onSale: false,
-  },
-  {
-    id: 45,
-    name: "Tactical Cargo Pants",
-    category: "pant",
-    subcategory: "cargo",
-    price: 109.99,
-    originalPrice: 119.99,
-    image: "/pant.jpg",
-    colors: ["black", "olive", "gray"],
-    sizes: ["M", "L", "XL"],
-    rating: 4.7,
-    reviews: 203,
-    isNew: true,
-    onSale: true,
-  },
-  {
-    id: 46,
-    name: "Raw Denim Jeans",
-    category: "pant",
-    subcategory: "jeans",
-    price: 124.99,
-    originalPrice: 124.99,
-    image: "/pant.jpg",
-    colors: ["blue", "black"],
-    sizes: ["S", "M", "L"],
-    rating: 4.8,
-    reviews: 145,
-    isNew: true,
-    onSale: false,
-  },
-  {
-    id: 47,
-    name: "Pleated Trousers",
-    category: "pant",
-    subcategory: "chinos",
-    price: 89.99,
-    originalPrice: 99.99,
-    image: "/pant.jpg",
-    colors: ["charcoal", "navy", "brown"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.3,
-    reviews: 134,
-    isNew: false,
-    onSale: true,
-  },
-  {
-    id: 48,
-    name: "Utility Joggers",
-    category: "pant",
-    subcategory: "cargo",
-    price: 74.99,
-    originalPrice: 84.99,
-    image: "/pant.jpg",
-    colors: ["black", "gray", "olive"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.2,
-    reviews: 178,
-    isNew: false,
-    onSale: true,
-  },
-  {
-    id: 49,
-    name: "Vintage Wash Jeans",
-    category: "pant",
-    subcategory: "jeans",
-    price: 97.99,
-    originalPrice: 107.99,
-    image: "/pant.jpg",
-    colors: ["blue", "gray", "black"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.6,
-    reviews: 156,
-    isNew: false,
-    onSale: true,
-  },
-  {
-    id: 50,
-    name: "Corduroy Pants",
-    category: "pant",
-    subcategory: "chinos",
-    price: 92.99,
-    originalPrice: 92.99,
-    image: "/pant.jpg",
-    colors: ["brown", "navy", "olive"],
-    sizes: ["M", "L", "XL"],
-    rating: 4.5,
-    reviews: 167,
-    isNew: true,
-    onSale: false,
-  },
-  {
-    id: 51,
-    name: "Tech Cargo Shorts",
-    category: "pant",
-    subcategory: "cargo",
-    price: 67.99,
-    originalPrice: 77.99,
-    image: "/pant.jpg",
-    colors: ["black", "khaki", "navy"],
-    sizes: ["S", "M", "L", "XL"],
-    rating: 4.4,
-    reviews: 189,
-    isNew: true,
-    onSale: true,
-  },
-]
-
+// Map backend categories to display names
 const categoryMap = {
   tshirt: "T-Shirts",
   shirt: "Shirts",
@@ -831,28 +67,20 @@ const categoryMap = {
   pant: "Pants",
 }
 
-const subcategoryMap = {
-  "basic-tee": "Basic Tees",
-  "graphic-tee": "Graphic Tees",
-  "premium-tee": "Premium Tees",
-  "dress-shirt": "Dress Shirts",
-  "casual-shirt": "Casual Shirts",
-  flannel: "Flannel Shirts",
-  pullover: "Pullover Hoodies",
-  "zip-up": "Zip-Up Hoodies",
-  oversized: "Oversized Hoodies",
-  denim: "Denim Jackets",
-  bomber: "Bomber Jackets",
-  leather: "Leather Jackets",
-  jeans: "Jeans",
-  chinos: "Chinos",
-  cargo: "Cargo Pants",
+// Map backend categories to frontend categories for filtering
+const categoryMapping = {
+  tshirt: "tshirt",
+  shirt: "shirt",
+  hoodie: "hoodie",
+  jacket: "jacket",
+  pant: "pant",
 }
 
 const colorMap = {
   black: "#000000",
   white: "#FFFFFF",
   gray: "#6B7280",
+  grey: "#6B7280",
   navy: "#1E3A8A",
   blue: "#3B82F6",
   beige: "#F5F5DC",
@@ -865,15 +93,66 @@ const colorMap = {
   charcoal: "#374151",
   sage: "#9CA3AF",
   brown: "#92400E",
+  indigo: "#4F46E5",
+  natural: "#F5F5DC",
+  heather: "#9CA3AF",
+  military: "#556B2F",
+}
+
+// Function to get image URL with enhanced logic - fixed for direct product access
+const getImageUrl = (product: Product): string => {
+  // First, try to find primary image or video in media table
+  const primaryMedia = product.media?.find(
+    (media: any) => media.is_primary && (media.media_type === "image" || media.media_type === "video"),
+  )
+
+  if (primaryMedia) {
+    const mediaUrl = primaryMedia.media_url
+    if (mediaUrl.startsWith("http")) return mediaUrl
+    if (mediaUrl.startsWith("/")) return mediaUrl
+    return `/${mediaUrl}`
+  }
+
+  // If no primary media, use the first available image/video
+  const firstMedia = product.media?.find((media: any) => media.media_type === "image" || media.media_type === "video")
+
+  if (firstMedia) {
+    const mediaUrl = firstMedia.media_url
+    if (mediaUrl.startsWith("http")) return mediaUrl
+    if (mediaUrl.startsWith("/")) return mediaUrl
+    return `/${mediaUrl}`
+  }
+
+  // Fallback to product image_url
+  if (product.image_url) {
+    if (product.image_url.startsWith("http")) return product.image_url
+    if (product.image_url.startsWith("/")) return product.image_url
+    return `/${product.image_url}`
+  }
+
+  // Final fallback to placeholder
+  return "/placeholder.svg"
 }
 
 export default function CategoryCollectionPage() {
   const params = useParams()
   const router = useRouter()
+    const [selectedColor, setSelectedColor] = useState("black")
+    const [selectedSize, setSelectedSize] = useState("M")
+    const [selectedFabric, setSelectedFabric] = useState("cotton")
+    const [quantity, setQuantity] = useState(1)
   const slug = params?.slug as string
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const pathname = usePathname();
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [productsLoading, setProductsLoading] = useState<boolean>(true)
+  const pathname = usePathname()
+  const { cartItems, addToCart } = useCart()
+  const itemCount = cartItems.reduce((total, item) => total + item.quantity, 0)
 
+  // Product state
+  const [allProducts, setAllProducts] = useState<UIProduct[]>([])
+  const [error, setError] = useState<string | null>(null)
+
+  // Filter and UI state
   const [searchQuery, setSearchQuery] = useState("")
   const [sortBy, setSortBy] = useState("featured")
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
@@ -881,7 +160,6 @@ export default function CategoryCollectionPage() {
   const [priceRange, setPriceRange] = useState([0, 400])
   const [selectedColors, setSelectedColors] = useState<string[]>([])
   const [selectedSizes, setSelectedSizes] = useState<string[]>([])
-  const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([])
   const [showOnSale, setShowOnSale] = useState(false)
   const [showNew, setShowNew] = useState(false)
   const [wishlist, setWishlist] = useState<number[]>([])
@@ -890,6 +168,132 @@ export default function CategoryCollectionPage() {
   const [isSorting, setIsSorting] = useState(false)
   const gridControls = useAnimationControls()
   const [searchSuggestions, setSearchSuggestions] = useState<string[]>([])
+  const [addingToCart, setAddingToCart] = useState<Record<string, boolean>>({})
+
+  // User state
+  const [user, setUser] = useState<UserType | null>(null)
+  const [isCartOpen, setIsCartOpen] = useState(false)
+
+  const normalizeColor = (color: string) => color.toLowerCase().replace(/[^a-z]/g, "") // remove spaces, punctuation, etc.
+
+  const findClosestColor = (inputColor: string): string => {
+    const normalizedInput = normalizeColor(inputColor)
+
+    // Exact match first
+    const exactMatch = Object.keys(colorMap).find((key) => normalizeColor(key) === normalizedInput)
+    if (exactMatch) return exactMatch
+
+    // Partial match
+    const partialMatch = Object.keys(colorMap).find(
+      (key) => normalizedInput.includes(normalizeColor(key)) || normalizeColor(key).includes(normalizedInput),
+    )
+    if (partialMatch) return partialMatch
+
+    return "black" // fallback
+  }
+
+  // Fetch products from API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setProductsLoading(true)
+      setError(null)
+
+      try {
+        // Get the backend category name
+        const backendCategory = categoryMapping[slug as keyof typeof categoryMapping] || slug
+
+        // Fetch products with category filter
+        const products = await fetchProductsArray(backendCategory)
+
+        // Transform products to match expected format for UI and get images
+        const transformedProducts = products.map((product) => {
+          const closestColor = product.color ? findClosestColor(product.color) : "black"
+          const imageUrl = getImageUrl(product) // Remove await here
+
+          return {
+            ...product,
+            numericId: Number.parseInt(product.id.replace(/-/g, "").slice(0, 8), 16),
+            originalPrice: product.base_price * 1.2,
+            image: imageUrl,
+            colors: [closestColor],
+            sizes: ["S", "M", "L", "XL"],
+            rating: product.average_rating || 4.5,
+            reviews: product.review_count || 0,
+            isNew: new Date(product.created_at) > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
+            onSale: Math.random() > 0.7,
+            price: product.base_price,
+            subcategory: product.category,
+          }
+        })
+
+        setAllProducts(transformedProducts) // Remove await here too
+      } catch (err) {
+        console.error("Error fetching products:", err)
+        setError("Failed to load products")
+        toast({
+          title: "Error",
+          description: "Failed to load products. Please try again.",
+          variant: "destructive",
+        })
+      } finally {
+        setProductsLoading(false)
+      }
+    }
+
+    if (slug) {
+      fetchProducts()
+    }
+  }, [slug, toast])
+
+  // Handle add to cart
+  const handleAddToCart = async (product: UIProduct, e: React.MouseEvent) => {
+    e.stopPropagation()
+
+    if (!product.id) {
+      toast({
+        title: "Error",
+        description: "Product ID is missing",
+        variant: "destructive",
+      })
+      return
+    }
+
+    setAddingToCart((prev) => ({ ...prev, [product.id]: true }))
+
+    try {
+      // Use the first available variant or create a default one
+      const selectedVariant = {
+        id: `${product.id}-default`,
+        size: "M", // Default size
+        color: product.colors[0] || "black", // First available color
+        price: product.base_price,
+        stock: 10, // Assume stock is available
+      }
+
+
+      const matchingVariant = product.variants?.find(
+        (variant) => variant.size === selectedSize && (variant.color === selectedColor || !variant.color),
+      )
+
+      await addToCart(product.id, matchingVariant?.id, quantity)
+
+
+      toast({
+        title: "Added to cart",
+        description: `${product.name} has been added to your cart`,
+        duration: 3000,
+      })
+    } catch (error) {
+      console.error("Failed to add to cart:", error)
+      toast({
+        title: "Error",
+        description: "Failed to add item to cart. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setAddingToCart((prev) => ({ ...prev, [product.id]: false }))
+    }
+  }
 
   // Enhanced smooth animation when filters toggle
   useEffect(() => {
@@ -897,7 +301,6 @@ export default function CategoryCollectionPage() {
       setIsAnimating(true)
 
       if (!showFilters) {
-        // Smooth expansion animation when filters close
         await gridControls.start({
           width: "100%",
           transition: {
@@ -909,7 +312,6 @@ export default function CategoryCollectionPage() {
           },
         })
       } else {
-        // Smooth contraction when filters open
         await gridControls.start({
           width: "calc(100% - 88px)",
           transition: {
@@ -922,7 +324,6 @@ export default function CategoryCollectionPage() {
         })
       }
 
-      // Add a small delay before allowing new animations
       setTimeout(() => setIsAnimating(false), 200)
     }
 
@@ -951,67 +352,56 @@ export default function CategoryCollectionPage() {
     for (let j = 1; j <= str2.length; j++) {
       for (let i = 1; i <= str1.length; i++) {
         const indicator = str1[i - 1] === str2[j - 1] ? 0 : 1
-        matrix[j][i] = Math.min(
-          matrix[j][i - 1] + 1, // deletion
-          matrix[j - 1][i] + 1, // insertion
-          matrix[j - 1][i - 1] + indicator, // substitution
-        )
+        matrix[j][i] = Math.min(matrix[j][i - 1] + 1, matrix[j - 1][i] + 1, matrix[j - 1][i - 1] + indicator)
       }
     }
 
     return matrix[str2.length][str1.length]
   }
 
-  // Filter products based on category slug and filters
+  // Filter products based on all filters
   const filteredProducts = useMemo(() => {
-    let products = allProducts.filter((product) => product.category === slug)
+    let products = [...allProducts]
 
-    // Enhanced search with fuzzy matching and relevance scoring
+    // Enhanced search with fuzzy matching
     if (searchQuery) {
       const query = searchQuery.toLowerCase().trim()
 
-      // Calculate search relevance score for each product
       const productsWithScore = products.map((product) => {
         let score = 0
         const name = product.name.toLowerCase()
-        const category = categoryMap[product.category as keyof typeof categoryMap].toLowerCase()
-        const subcategory = subcategoryMap[product.subcategory as keyof typeof subcategoryMap].toLowerCase()
+        const category = product.category.toLowerCase()
+        const fabric = product.fabric?.toLowerCase() || ""
 
         // Exact matches get highest score
         if (name.includes(query)) score += 100
         if (category.includes(query)) score += 80
-        if (subcategory.includes(query)) score += 60
+        if (fabric.includes(query)) score += 60
 
         // Word-based matching
         const queryWords = query.split(" ").filter((word) => word.length > 0)
         const nameWords = name.split(" ")
-        const allWords = [...nameWords, category, subcategory]
+        const allWords = [...nameWords, category, fabric]
 
         queryWords.forEach((queryWord) => {
           allWords.forEach((word) => {
-            // Exact word match
             if (word.includes(queryWord)) {
               score += 50
-            }
-            // Fuzzy matching using simple similarity
-            else if (queryWord.length > 2) {
+            } else if (queryWord.length > 2) {
               const similarity = calculateSimilarity(queryWord, word)
               if (similarity > 0.6) score += Math.floor(similarity * 30)
             }
           })
         })
 
-        // Bonus for starting with query
         if (name.startsWith(query)) score += 40
 
-        // Bonus for word boundaries
         const wordBoundaryRegex = new RegExp(`\\b${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`, "i")
         if (wordBoundaryRegex.test(name)) score += 30
 
         return { ...product, searchScore: score }
       })
 
-      // Filter products with score > 0 and sort by relevance
       products = productsWithScore
         .filter((product) => product.searchScore > 0)
         .sort((a, b) => b.searchScore - a.searchScore)
@@ -1029,11 +419,6 @@ export default function CategoryCollectionPage() {
     // Apply size filter
     if (selectedSizes.length > 0) {
       products = products.filter((product) => product.sizes.some((size) => selectedSizes.includes(size)))
-    }
-
-    // Apply subcategory filter
-    if (selectedSubcategories.length > 0) {
-      products = products.filter((product) => selectedSubcategories.includes(product.subcategory))
     }
 
     // Apply sale filter
@@ -1066,7 +451,7 @@ export default function CategoryCollectionPage() {
     }
 
     return products
-  }, [slug, searchQuery, priceRange, selectedColors, selectedSizes, selectedSubcategories, showOnSale, showNew, sortBy])
+  }, [allProducts, searchQuery, priceRange, selectedColors, selectedSizes, showOnSale, showNew, sortBy])
 
   // Handle sorting animation
   useEffect(() => {
@@ -1075,16 +460,15 @@ export default function CategoryCollectionPage() {
     return () => clearTimeout(timer)
   }, [sortBy])
 
+  // Search suggestions
   useEffect(() => {
     if (searchQuery && filteredProducts.length === 0) {
-      const allTerms = allProducts
-        .filter((product) => product.category === slug)
-        .flatMap((product) => [
-          product.name.toLowerCase(),
-          categoryMap[product.category as keyof typeof categoryMap].toLowerCase(),
-          subcategoryMap[product.subcategory as keyof typeof subcategoryMap].toLowerCase(),
-          ...product.colors,
-        ])
+      const allTerms = allProducts.flatMap((product) => [
+        product.name.toLowerCase(),
+        product.category.toLowerCase(),
+        product.fabric?.toLowerCase() || "",
+        ...product.colors,
+      ])
 
       const suggestions = allTerms
         .filter((term) => calculateSimilarity(searchQuery.toLowerCase(), term) > 0.4)
@@ -1094,25 +478,17 @@ export default function CategoryCollectionPage() {
     } else {
       setSearchSuggestions([])
     }
-  }, [searchQuery, filteredProducts.length, slug])
+  }, [searchQuery, filteredProducts.length, allProducts])
 
-  const availableSubcategories = useMemo(() => {
-    const subcategories = [
-      ...new Set(allProducts.filter((product) => product.category === slug).map((product) => product.subcategory)),
-    ]
-    return subcategories
-  }, [slug])
-
-
+  // Get available colors from current products
   const availableColors = useMemo(() => {
-    const colors = [
-      ...new Set(allProducts.filter((product) => product.category === slug).flatMap((product) => product.colors)),
-    ]
-    return colors
-  }, [slug])
+    const colors = [...new Set(allProducts.flatMap((product) => product.colors))]
+    return colors.filter((color) => color && colorMap[color as keyof typeof colorMap])
+  }, [allProducts])
 
-  const toggleWishlist = (productId: number) => {
-    setWishlist((prev) => (prev.includes(productId) ? prev.filter((id) => id !== productId) : [...prev, productId]))
+  const toggleWishlist = (productId: string) => {
+    const numericId = Number.parseInt(productId.replace(/-/g, "").slice(0, 8), 16)
+    setWishlist((prev) => (prev.includes(numericId) ? prev.filter((id) => id !== numericId) : [...prev, numericId]))
   }
 
   const clearFilters = () => {
@@ -1120,7 +496,6 @@ export default function CategoryCollectionPage() {
     setPriceRange([0, 400])
     setSelectedColors([])
     setSelectedSizes([])
-    setSelectedSubcategories([])
     setShowOnSale(false)
     setShowNew(false)
   }
@@ -1129,58 +504,52 @@ export default function CategoryCollectionPage() {
     router.push("/profile")
   }
 
-  const [user, setUser] = useState<UserType | null>(null)
-  const [isCartOpen, setIsCartOpen] = useState(false)
+  const navigateToHistory = () => {
+    router.push("/history")
+  }
 
- const fetchUserProfile = async () => {
-       setIsLoading(true);
-       try {
-         const userData: User = await authService.getProfile();
-   
-         const formattedUser: UserType = {
-           email: userData.email,
-           name: `${userData.first_name} ${userData.last_name}`.trim() || userData.username || "No Name",
-           isLoggedIn: true,
-         };
-   
-         setUser(formattedUser);
-       } catch (error) {
-         setUser(null);
-       } finally {
-         setIsLoading(false);
-       }
-     };
+  const fetchUserProfile = async () => {
+    setIsLoading(true)
+    try {
+      const userData: User = await authService.getProfile()
 
+      const formattedUser: UserType = {
+        email: userData.email,
+        name: `${userData.first_name} ${userData.last_name}`.trim() || userData.username || "No Name",
+        isLoggedIn: true,
+      }
 
-     const handleLogout = async () => {
-         try {
-           await authService.logout();
-       
-           // Clear user state immediately
-           setUser(null);
-       
-           // Optionally redirect or refresh the current route without reload
-           router.replace(pathname);
-       
-           toast({
-             title: "Logged out",
-             description: "You have been successfully logged out.",
-             duration: 3000,
-           });
-         } catch (error) {
-           console.error("Logout failed:", error);
-           toast({
-             title: "Logout error",
-             description: "Something went wrong while logging out.",
-             duration: 3000,
-           });
-         }
-       };
-       
-       useEffect(() => {
-           fetchUserProfile();
-         }, []);
+      setUser(formattedUser)
+    } catch (error) {
+      setUser(null)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
+  const handleLogout = async () => {
+    try {
+      await authService.logout()
+      setUser(null)
+      router.replace(pathname)
+      toast({
+        title: "Logged out",
+        description: "You have been successfully logged out.",
+        duration: 3000,
+      })
+    } catch (error) {
+      console.error("Logout failed:", error)
+      toast({
+        title: "Logout error",
+        description: "Something went wrong while logging out.",
+        duration: 3000,
+      })
+    }
+  }
+
+  useEffect(() => {
+    fetchUserProfile()
+  }, [])
 
   useEffect(() => {
     if (isCartOpen) {
@@ -1194,18 +563,71 @@ export default function CategoryCollectionPage() {
     }
   }, [isCartOpen])
 
-  if (!slug || !categoryMap[slug as keyof typeof categoryMap]) {
+  // Check if category exists
+  if (
+    !slug ||
+    (!categoryMap[slug as keyof typeof categoryMap] && !categoryMapping[slug as keyof typeof categoryMapping])
+  ) {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Category not found</h1>
-          <Button onClick={() => router.push("/")} variant="outline">
-            Back to Home
+          <Button onClick={() => router.push("/dashboard")} variant="outline">
+            Back to Dashboard
           </Button>
         </div>
       </div>
     )
   }
+
+  // Show loading state
+  if (productsLoading) {
+    return (
+      <div className="min-h-screen bg-black text-white">
+        <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur border-b border-orange-900/30">
+          <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+            <Link
+              href="/dashboard"
+              className="flex items-center gap-2 text-xl font-bold tracking-wider transition-opacity font-creepster duration-500 pl-10"
+              style={{
+                fontFamily: "'October Crow', cursive",
+                letterSpacing: "0.2em",
+              }}
+            >
+              DXRKICE
+            </Link>
+          </div>
+        </header>
+
+        <div className="pt-16 flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <Loader2 className="h-12 w-12 animate-spin text-orange-500 mx-auto mb-4" />
+            <p className="text-xl">Loading products...</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Error loading products</h1>
+          <p className="text-gray-400 mb-4">{error}</p>
+          <Button onClick={() => window.location.reload()} variant="outline">
+            Try Again
+          </Button>
+        </div>
+      </div>
+    )
+  }
+
+  const categoryDisplayName =
+    categoryMap[slug as keyof typeof categoryMap] ||
+    categoryMap[categoryMapping[slug as keyof typeof categoryMapping] as keyof typeof categoryMap] ||
+    slug.charAt(0).toUpperCase() + slug.slice(1)
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -1222,16 +644,16 @@ export default function CategoryCollectionPage() {
             DXRKICE
           </Link>
           <nav className="hidden md:flex gap-6">
-            <Link href="/#NewArrival" className="text-sm font-medium hover:underline underline-offset-4">
+            <Link href="#NewArrival" className="text-sm font-medium hover:underline underline-offset-4">
               New Arrivals
             </Link>
-            <Link href="#" className="text-sm font-medium hover:underline underline-offset-4">
+            <Link href="#Collection" className="text-sm font-medium hover:underline underline-offset-4">
               Collection
             </Link>
             <Link href="#" className="text-sm font-medium hover:underline underline-offset-4">
-              Create
+              Trending
             </Link>
-            <Link href="#" className="text-sm font-medium hover:underline underline-offset-4">
+            <Link href="how-it-works" className="text-sm font-medium hover:underline underline-offset-4">
               About
             </Link>
           </nav>
@@ -1239,41 +661,103 @@ export default function CategoryCollectionPage() {
             <Button variant="ghost" size="icon">
               <Heart className="w-5 h-5" />
             </Button>
-            <Button
-              size="icon"
-              variant="ghost"
-              onClick={() => setIsCartOpen(true)}
-              className="relative hover:bg-orange-500/20 transition-colors duration-200"
-            >
-              <ShoppingBag className="h-5 w-5" />
-              {/* Cart item count badge */}
-              <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 bg-orange-500 text-black text-xs">
-                3
-              </Badge>
-              <span className="sr-only">Shopping cart</span>
-            </Button>
+
             {user && (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="relative">
-                    <User2 className="h-5 w-5" />
-                    <span className="sr-only">User menu</span>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  <DropdownMenuLabel className="font-normal text-sm text-gray-500">{user.email}</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={navigateToProfile}>Profile</DropdownMenuItem>
-                  <DropdownMenuItem onClick={navigateToProfile}>Orders</DropdownMenuItem>
-                  <DropdownMenuItem onClick={navigateToProfile}>Wishlist</DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleLogout} className="text-red-500">
-                    <LogOut className="mr-2 h-4 w-4" />
-                    Logout
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              // Authenticated user - show cart and profile
+              <>
+                {/* <CartButton></CartButton> */}
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => setIsCartOpen(true)}
+                  className="relative hover:bg-orange-500/20 transition-colors duration-200"
+                >
+                  <ShoppingBag className="h-5 w-5" />
+                  <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 bg-orange-500 text-black text-xs">
+                    {itemCount}
+                  </Badge>
+                  <span className="sr-only">Shopping cart</span>
+                </Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="relative h-10 w-10 rounded-full hover:bg-orange-500/10 transition-all duration-300 group"
+                    >
+                      <User2 className="h-5 w-5 group-hover:text-orange-400 transition-colors" />
+                      {/* Notification dot - only show if there are notifications */}
+                      <div className="absolute -bottom-1 -right-1 h-3 w-3 bg-orange-500 border-2 border-black rounded-full"></div>
+                      <span className="sr-only">User menu</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent
+                    align="end"
+                    className="w-64 bg-black/95 backdrop-blur-sm border border-orange-500/30 shadow-2xl shadow-orange-500/10"
+                    onCloseAutoFocus={(e) => {
+                      e.preventDefault()
+                    }}
+                    sideOffset={8}
+                  >
+                    <div className="px-4 py-3 border-b border-orange-500/20">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-white truncate">{user.name}</p>
+                        <p className="text-xs text-gray-400 truncate">{user.email}</p>
+                      </div>
+                    </div>
+
+                    <div className="py-2">
+                      <DropdownMenuItem
+                        onClick={navigateToProfile}
+                        className="flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-orange-500/10 transition-colors duration-200 cursor-pointer"
+                      >
+                        <User2 className="mr-3 h-4 w-4 text-orange-500" />
+                        Profile Settings
+                      </DropdownMenuItem>
+
+                      <DropdownMenuItem className="flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-orange-500/10 transition-colors duration-200 cursor-pointer">
+                        <Bell className="mr-3 h-4 w-4 text-orange-500" />
+                        Notifications
+                        <Badge className="ml-auto bg-orange-500 text-black text-xs">3</Badge>
+                      </DropdownMenuItem>
+
+                      <DropdownMenuItem
+                        onClick={navigateToHistory}
+                        className="flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-orange-500/10 transition-colors duration-200 cursor-pointer"
+                      >
+                        <ShoppingBag className="mr-3 h-4 w-4 text-orange-500" />
+                        Order History
+                      </DropdownMenuItem>
+
+                      <DropdownMenuItem
+                        onClick={navigateToProfile}
+                        className="flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-orange-500/10 transition-colors duration-200 cursor-pointer"
+                      >
+                        <ShoppingBag className="mr-3 h-4 w-4 text-orange-500" />
+                        My Orders
+                      </DropdownMenuItem>
+
+                      <DropdownMenuItem
+                        onClick={navigateToProfile}
+                        className="flex items-center px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-orange-500/10 transition-colors duration-200 cursor-pointer"
+                      >
+                        <Heart className="mr-3 h-4 w-4 text-orange-500" />
+                        Wishlist
+                      </DropdownMenuItem>
+                    </div>
+
+                    <div className="border-t border-orange-500/20 py-2">
+                      <DropdownMenuItem
+                        onClick={handleLogout}
+                        className="flex items-center px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors duration-200 cursor-pointer"
+                      >
+                        <LogOut className="mr-3 h-4 w-4" />
+                        Sign Out
+                      </DropdownMenuItem>
+                    </div>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </>
             )}
           </div>
         </div>
@@ -1285,14 +769,10 @@ export default function CategoryCollectionPage() {
         <div className="container mx-auto px-4 pb-0 py-4">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-4">
-              <Button
-                variant="ghost"
-                onClick={() => router.back()}
-                className="text-white hover:text-orange-500"
-              >
+              <Button variant="ghost" onClick={() => router.back()} className="text-white hover:text-orange-500">
                 ← Back
               </Button>
-              <h1 className="text-3xl font-bold">{categoryMap[slug as keyof typeof categoryMap]}</h1>
+              <h1 className="text-3xl font-bold">{categoryDisplayName}</h1>
               <Badge variant="outline" className="border-orange-500/50 text-orange-400">
                 {filteredProducts.length} items
               </Badge>
@@ -1347,7 +827,7 @@ export default function CategoryCollectionPage() {
                     variant={viewMode === "list" ? "default" : "ghost"}
                     size="sm"
                     onClick={() => setViewMode("list")}
-                    className="rounded-l-none"
+                    className="rounded-l-none block md:hidden"
                   >
                     <List className="w-4 h-4" />
                   </Button>
@@ -1454,50 +934,6 @@ export default function CategoryCollectionPage() {
                           <div className="flex justify-between text-sm text-gray-400">
                             <span>${priceRange[0]}</span>
                             <span>${priceRange[1]}</span>
-                          </div>
-                        </motion.div>
-
-                        {/* Subcategories */}
-                        <motion.div
-                          className="space-y-4 mb-6"
-                          initial={{ y: 25, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          transition={{
-                            delay: 0.25,
-                            duration: 0.4,
-                            ease: [0.4, 0.0, 0.2, 1],
-                          }}
-                        >
-                          <h4 className="font-medium">Type</h4>
-                          <div className="space-y-2">
-                            {availableSubcategories.map((subcategory, index) => (
-                              <motion.div
-                                key={subcategory}
-                                className="flex items-center space-x-2"
-                                initial={{ x: -25, opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                transition={{
-                                  delay: 0.3 + index * 0.04,
-                                  duration: 0.4,
-                                  ease: [0.4, 0.0, 0.2, 1],
-                                }}
-                              >
-                                <Checkbox
-                                  id={subcategory}
-                                  checked={selectedSubcategories.includes(subcategory)}
-                                  onCheckedChange={(checked) => {
-                                    if (checked === true) {
-                                      setSelectedSubcategories([...selectedSubcategories, subcategory])
-                                    } else {
-                                      setSelectedSubcategories(selectedSubcategories.filter((s) => s !== subcategory))
-                                    }
-                                  }}
-                                />
-                                <label htmlFor={subcategory} className="text-sm">
-                                  {subcategoryMap[subcategory as keyof typeof subcategoryMap]}
-                                </label>
-                              </motion.div>
-                            ))}
                           </div>
                         </motion.div>
 
@@ -1722,7 +1158,7 @@ export default function CategoryCollectionPage() {
                   scale: isAnimating || isSorting ? 0.98 : 1,
                 }}
                 transition={{
-                  duration: isSorting ? 0.6 : 0.4,
+                  duration: isAnimating || isSorting ? 0.6 : 0.4,
                   ease: [0.4, 0.0, 0.2, 1],
                 }}
               >
@@ -1778,6 +1214,9 @@ export default function CategoryCollectionPage() {
                               duration: 0.6,
                               ease: [0.4, 0.0, 0.2, 1],
                             }}
+                            onError={(e) => {
+                              e.currentTarget.src = "/placeholder.svg"
+                            }}
                           />
 
                           {/* Badges */}
@@ -1804,40 +1243,36 @@ export default function CategoryCollectionPage() {
 
                           <div className="absolute top-3 right-3 flex flex-col gap-2">
                             <Button
-      size="icon"
-      variant="ghost"
-      className="opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/40 hover:bg-black/60 rounded-full shadow"
-      onClick={(e) => {
-        e.stopPropagation()
-        toggleWishlist(product.id)
-      }}
-    >
-      <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-        <Heart
-          className={cn(
-            "w-4 h-4 transition-colors duration-300",
-            wishlist.includes(product.id) ? "fill-red-500 text-red-500" : "text-white",
-          )}
-        />
-      </motion.div>
-    </Button>
+                              size="icon"
+                              variant="ghost"
+                              className="opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/40 hover:bg-black/60 rounded-full shadow"
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                toggleWishlist(product.id)
+                              }}
+                            >
+                              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                                <Heart
+                                  className={cn(
+                                    "w-4 h-4 transition-colors duration-300",
+                                    wishlist.includes(product.numericId) ? "fill-red-500 text-red-500" : "text-white",
+                                  )}
+                                />
+                              </motion.div>
+                            </Button>
                           </div>
-
-                          {/* Wishlist Button */}
-                          {/* Quick Add to Cart */}
-                          
                         </div>
 
                         <CardContent className="p-4 space-y-3">
-                          {/* Subcategory & Rating */}
+                          {/* Category & Rating */}
                           <div className="flex items-center justify-between text-sm text-gray-400">
                             <Badge variant="outline" className="text-xs rounded-md px-2">
-                              {subcategoryMap[product.subcategory as keyof typeof subcategoryMap]}
+                              {product.category.charAt(0).toUpperCase() + product.category.slice(1)}
                             </Badge>
                             <div className="flex items-center gap-1">
                               <Star className="w-3 h-3 fill-orange-500 text-orange-500" />
                               <span className="text-xs">
-                                {product.rating} ({product.reviews})
+                                {product.rating.toFixed(1)} ({product.reviews})
                               </span>
                             </div>
                           </div>
@@ -1849,9 +1284,13 @@ export default function CategoryCollectionPage() {
 
                           {/* Price */}
                           <div className="flex items-center gap-2">
-                            <span className="text-xl font-bold text-orange-500">${product.price}</span>
+                            <span className="text-xl font-bold text-orange-500">
+                              ${Number(product.price).toFixed(2)}
+                            </span>
                             {product.onSale && (
-                              <span className="text-sm text-gray-400 line-through">${product.originalPrice}</span>
+                              <span className="text-sm text-gray-400 line-through">
+                                ${product.originalPrice.toFixed(2)}
+                              </span>
                             )}
                           </div>
 
@@ -1870,50 +1309,40 @@ export default function CategoryCollectionPage() {
                                   damping: 25,
                                 }}
                                 className="w-4 h-4 rounded-full border border-gray-600 shadow-sm"
-                                style={{ backgroundColor: colorMap[color as keyof typeof colorMap] }}
+                                style={{ backgroundColor: colorMap[color as keyof typeof colorMap] || "#000000" }}
                               />
                             ))}
                             {product.colors.length > 4 && (
                               <span className="text-xs text-gray-400">+{product.colors.length - 4}</span>
                             )}
                           </div>
+
                           <div className="flex items-center gap-1">
                             <Button
                               size="sm"
-                              className="opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black hover:bg-orange-600 text-white shadow rounded-full px-4"
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                // Add to cart logic
-                              }}
+                              disabled={addingToCart[product.id]}
+                              className="opacity-0 group-hover:opacity-100 transition-all duration-300 bg-orange-500 hover:bg-orange-600 text-black shadow rounded-full px-4 flex-1"
+                              onClick={(e) => handleAddToCart(product, e)}
                             >
                               <motion.div
-                                className="flex items-center"
+                                className="flex items-center justify-center"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                               >
-                                <ShoppingCart className="w-4 h-4 mr-2" />
-                                Quick Add
-                              </motion.div>
-                            </Button>
-                            <Button
-                              size="sm"
-                              className="opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black hover:bg-orange-600 text-white shadow rounded-full px-4"
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                // Add to cart logic
-                              }}
-                            >
-                              <motion.div
-                                className="flex items-center"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                              >
-                                <ShoppingCart className="w-4 h-4 mr-2" />
-                                Buy Now
+                                {addingToCart[product.id] ? (
+                                  <>
+                                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                    Adding...
+                                  </>
+                                ) : (
+                                  <>
+                                    <ShoppingCart className="w-4 h-4 mr-2" />
+                                    Quick Add
+                                  </>
+                                )}
                               </motion.div>
                             </Button>
                           </div>
-                          
                         </CardContent>
                       </Card>
                     </motion.div>

@@ -3,9 +3,16 @@
 # dependencies
 /node_modules
 
+# Ignore New folder
+New folder/
+
 # next.js
 /.next/
 /out/
+
+# Ignore all GLB files in 3d assets
+# /frontend/public/assets/3d/*.glb
+# /frontend/public/assets/3d/*.glb.log
 
 # production
 /build

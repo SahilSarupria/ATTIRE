@@ -1,7 +1,7 @@
 import type React from "react";
 import "@/app/globals.css";
 import { Inter } from "next/font/google";
-import { CartProvider } from "@/app/context/cart-context";
+import { CartProvider } from "@/app/context/CartContext";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import Head from "next/head";
@@ -40,8 +40,10 @@ export default async function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {/* Pass user as prop to AuthProviderWrapper */}
           <AuthProviderWrapper initialUser={user}>
+          <CartProvider>
             {children}
             <Toaster />
+            </CartProvider>
           </AuthProviderWrapper>
         </ThemeProvider>
       </body>

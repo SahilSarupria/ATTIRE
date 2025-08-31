@@ -1,158 +1,159 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { ArrowRight, Eye, EyeOff } from "lucide-react";
-import { useSearchParams } from "next/navigation";
-import { useAuth } from "@/app/context/AuthContext"; // <-- use your auth context here
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useToast } from "@/hooks/use-toast";
+import type React from "react"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
+import Link from "next/link"
+import { ArrowRight, Eye, EyeOff } from "lucide-react"
+import { useSearchParams } from "next/navigation"
+import { useAuth } from "@/app/context/AuthContext"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useToast } from "@/hooks/use-toast"
 
 type FormErrors = {
-  email?: string;
-  password?: string;
-  confirmPassword?: string;
-};
+  email?: string
+  password?: string
+  confirmPassword?: string
+}
 
 export default function LoginPage() {
-  const router = useRouter();
-  const { toast } = useToast();
-  const { login, register, isLoading } = useAuth();
+  const router = useRouter()
+  const { toast } = useToast()
 
-  const [rememberMe, setRememberMe] = useState(false);
-  const searchParams = useSearchParams();
-  const tab = searchParams.get("tab"); // tab is string | null
+  const searchParams = useSearchParams()
+  const { login, register, isLoading, isAuthenticated, isAdmin } = useAuth()
+  const callbackUrl = searchParams.get("callback") || "/" // default fallback
+
+  const [rememberMe, setRememberMe] = useState(false)
+  const tab = searchParams.get("tab") // tab is string | null
 
   // Form state
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [activeTab, setActiveTab] = useState<"login" | "signup">("signup");
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [activeTab, setActiveTab] = useState<"login" | "signup">("signup")
 
   useEffect(() => {
     if (tab === "login" || tab === "signup") {
-      setActiveTab(tab);
+      setActiveTab(tab)
     }
-  }, [tab]);
+  }, [tab])
+
+  // Check if user is already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      if (isAdmin) {
+        router.push("/admin")
+      } else {
+        router.push(callbackUrl || "/")
+      }
+    }
+  }, [isAuthenticated, isAdmin, router, callbackUrl])
 
   // Validation helpers
-  const validateEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const validatePassword = (password: string) =>
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(password);
+  const validateEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  const validatePassword = (password: string) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(password)
 
   // Validate form based on tab (login or signup)
   const validateForm = (isSignup: boolean) => {
-    const newErrors: FormErrors = {};
-    let isValid = true;
+    const newErrors: FormErrors = {}
+    let isValid = true
 
     if (!email) {
-      newErrors.email = "Email is required";
-      isValid = false;
+      newErrors.email = "Email is required"
+      isValid = false
     } else if (!validateEmail(email)) {
-      newErrors.email = "Please enter a valid email address";
-      isValid = false;
+      newErrors.email = "Please enter a valid email address"
+      isValid = false
     }
 
     if (!password) {
-      newErrors.password = "Password is required";
-      isValid = false;
+      newErrors.password = "Password is required"
+      isValid = false
     } else if (isSignup && !validatePassword(password)) {
-      newErrors.password =
-        "Password must be at least 8 characters with 1 uppercase, 1 lowercase, and 1 number";
-      isValid = false;
+      newErrors.password = "Password must be at least 8 characters with 1 uppercase, 1 lowercase, and 1 number"
+      isValid = false
     }
 
     if (isSignup && password !== confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
-      isValid = false;
+      newErrors.confirmPassword = "Passwords do not match"
+      isValid = false
     }
 
-    setErrors(newErrors);
-    return isValid;
-  };
+    setErrors(newErrors)
+    return isValid
+  }
 
   // Handle login
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    if (!validateForm(false)) return;
+    if (!validateForm(false)) return
 
     try {
-      await login(email, password);
+      await login(email, password)
 
       toast({
         title: "Login successful",
         description: `Welcome back!`,
-      });
+      })
 
-      router.push("/dashboard");
+      // The redirect will be handled by the useEffect that watches isAuthenticated
     } catch (err: any) {
       toast({
         title: "Login failed",
         description: err.message || "Invalid credentials",
         variant: "destructive",
-      });
+      })
 
-      setErrors({ email: "Invalid email or password." });
+      setErrors({ email: "Invalid email or password." })
     }
-  };
+  }
 
   // Handle signup
-const handleSignup = async (e: React.FormEvent) => {
-  e.preventDefault();
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault()
 
-  if (!validateForm(true)) return;
+    if (!validateForm(true)) return
 
-  try {
-    await register({ email, password, password_confirm: confirmPassword });
+    try {
+      // Call register with email and password (not an object)
+      await register({ email, password, password_confirm: confirmPassword })
 
-    toast({
-      title: "Account created",
-      description: "Welcome to DXRKICE!",
-    });
+      toast({
+        title: "Account created",
+        description: "Welcome to DXRKICE!",
+      })
 
-    router.push("/dashboard");
-  } catch (err: any) {
-    let errorMessage = "Could not create account. Please try again.";
+      // The redirect will be handled by the useEffect that watches isAuthenticated
+    } catch (err: any) {
+      let errorMessage = "Could not create account. Please try again."
 
-    if (err.response && err.response.data) {
-      const data = err.response.data;
-
-      // If the API returned structured errors
-      if (data.email && Array.isArray(data.email)) {
-        errorMessage = data.email[0];
-      } else if (typeof data.detail === "string") {
-        errorMessage = data.detail;
+      if (err.message) {
+        errorMessage = err.message
       }
-    } else if (err.message) {
-      errorMessage = err.message;
+
+      setErrors({ email: errorMessage })
+
+      toast({
+        title: "Signup failed",
+        description: errorMessage,
+        variant: "destructive",
+      })
     }
-
-    setErrors({ email: errorMessage });
-
-    toast({
-      title: "Signup failed",
-      description: errorMessage,
-      variant: "destructive",
-    });
   }
-};
-
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-black text-white">
       <div className="flex flex-1 flex-col items-center justify-center p-4 md:p-8">
         <div className="mx-auto w-full max-w-md">
           <div className="text-center mb-8">
-            <h1 className="october-crow-text text-4xl font-bold tracking-tighter mb-2 ">
-              DXRKICE
-            </h1>
+            <h1 className="october-crow-text text-4xl font-bold tracking-tighter mb-2 ">DXRKICE</h1>
             <p className="text-gray-400">Elevate your style, define your presence</p>
           </div>
 
@@ -182,9 +183,7 @@ const handleSignup = async (e: React.FormEvent) => {
                       errors.email ? "border-red-500" : ""
                     }`}
                   />
-                  {errors.email && (
-                    <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                  )}
+                  {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                 </div>
 
                 <div className="space-y-2">
@@ -213,17 +212,11 @@ const handleSignup = async (e: React.FormEvent) => {
                       className="absolute right-0 top-0 h-full px-3 py-2 text-gray-400"
                       onClick={() => setShowPassword(!showPassword)}
                     >
-                      {showPassword ? (
-                        <EyeOff className="h-4 w-4" />
-                      ) : (
-                        <Eye className="h-4 w-4" />
-                      )}
+                      {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                       <span className="sr-only">Toggle password visibility</span>
                     </Button>
                   </div>
-                  {errors.password && (
-                    <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-                  )}
+                  {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
                 </div>
 
                 <div className="flex items-center space-x-2">
@@ -239,11 +232,7 @@ const handleSignup = async (e: React.FormEvent) => {
                   </Label>
                 </div>
 
-                <Button
-                  type="submit"
-                  className="w-full bg-white text-black hover:bg-gray-200"
-                  disabled={isLoading}
-                >
+                <Button type="submit" className="w-full bg-white text-black hover:bg-gray-200" disabled={isLoading}>
                   {isLoading ? "Logging in..." : "Login"}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -251,11 +240,7 @@ const handleSignup = async (e: React.FormEvent) => {
                 <div className="text-center">
                   <p className="text-sm text-gray-400">
                     Don&apos;t have an account?{" "}
-                    <button
-                      type="button"
-                      onClick={() => setActiveTab("signup")}
-                      className="text-white hover:underline"
-                    >
+                    <button type="button" onClick={() => setActiveTab("signup")} className="text-white hover:underline">
                       Sign up
                     </button>
                   </p>
@@ -278,9 +263,7 @@ const handleSignup = async (e: React.FormEvent) => {
                       errors.email ? "border-red-500" : ""
                     }`}
                   />
-                  {errors.email && (
-                    <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                  )}
+                  {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                 </div>
 
                 <div className="space-y-2">
@@ -304,17 +287,11 @@ const handleSignup = async (e: React.FormEvent) => {
                       className="absolute right-0 top-0 h-full px-3 py-2 text-gray-400"
                       onClick={() => setShowPassword(!showPassword)}
                     >
-                      {showPassword ? (
-                        <EyeOff className="h-4 w-4" />
-                      ) : (
-                        <Eye className="h-4 w-4" />
-                      )}
+                      {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                       <span className="sr-only">Toggle password visibility</span>
                     </Button>
                   </div>
-                  {errors.password && (
-                    <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-                  )}
+                  {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
                 </div>
 
                 <div className="space-y-2">
@@ -330,16 +307,10 @@ const handleSignup = async (e: React.FormEvent) => {
                       errors.confirmPassword ? "border-red-500" : ""
                     }`}
                   />
-                  {errors.confirmPassword && (
-                    <p className="text-red-500 text-sm mt-1">{errors.confirmPassword}</p>
-                  )}
+                  {errors.confirmPassword && <p className="text-red-500 text-sm mt-1">{errors.confirmPassword}</p>}
                 </div>
 
-                <Button
-                  type="submit"
-                  className="w-full bg-white text-black hover:bg-gray-200"
-                  disabled={isLoading}
-                >
+                <Button type="submit" className="w-full bg-white text-black hover:bg-gray-200" disabled={isLoading}>
                   {isLoading ? "Signing up..." : "Sign Up"}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -347,11 +318,7 @@ const handleSignup = async (e: React.FormEvent) => {
                 <div className="text-center">
                   <p className="text-sm text-gray-400">
                     Already have an account?{" "}
-                    <button
-                      type="button"
-                      onClick={() => setActiveTab("login")}
-                      className="text-white hover:underline"
-                    >
+                    <button type="button" onClick={() => setActiveTab("login")} className="text-white hover:underline">
                       Log in
                     </button>
                   </p>
@@ -362,5 +329,5 @@ const handleSignup = async (e: React.FormEvent) => {
         </div>
       </div>
     </div>
-  );
+  )
 }
